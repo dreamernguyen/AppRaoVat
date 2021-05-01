@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:paddingTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#AFEEEE">
+        <ImageView
+            android:id="@+id/imgBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:padding="5dp"
+            android:src="@drawable/ic_back" />
+
+        <TextView
+            android:id="@+id/tvTieuDe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="10dp"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:text="Danh mục"/>
+
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Danh mục"
+            android:padding="10dp"
+            android:textColor="@color/gray"
+            android:textStyle="bold"
+            android:textSize="18sp"  />
+
+        <TextView
+            android:id="@+id/tvDanhMuc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nhập hạng mục"
+            android:padding="10dp"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="#C2EFEF"
+        android:paddingTop="5dp" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="Danh mục"
+            android:textStyle="bold"
+            android:textColor="@color/gray"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tvDanhMucCon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textSize="16sp"/>
+    </LinearLayout>
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#AFEEEE"
+            android:text="Tiếp tục"
+            android:textColor="@color/black"
+            android:layout_margin="10dp"
+            />
+
+
+</LinearLayout>

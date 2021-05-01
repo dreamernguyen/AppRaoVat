@@ -1,0 +1,64 @@
+<resources>
+    <string name="app_name">SaFaCo</string>
+
+    <string-array name="DanhMuc">
+        <item>Bất Động Sản</item>
+        <item>Xe Cộ</item>
+        <item>Đồ Điện Tử</item>
+        <item>Sách</item>
+        <item>Thời Trang</item>
+    </string-array>
+
+    <string-array name="DanhMucBatDongSan">
+        <item>Căn hộ</item>
+        <item>Chung cư</item>
+        <item>Nhà ở</item>
+        <item>Văn phòng</item>
+        <item>Mặt bằng kinh doanh</item>
+        <item>Phòng trọ</item>
+    </string-array>
+
+    <string-array name="DanhMucXeCo">
+        <item>Ô Tô</item>
+        <item>Xe Máy</item>
+        <item>Xe Tải</item>
+        <item>Xe Ben</item>
+        <item>Xe Đạp</item>
+        <item>Phụ Tùng Xe</item>
+        <item>Phương Tiện Khác</item>
+    </string-array>
+
+
+    <string-array name="SapXep">
+        <item>Giá bán tăng dần</item>
+        <item>Giá bán giảm dần</item>
+        <item>Thời gian mới nhất</item>
+        <item>Thời gian cũ nhất</item>
+    </string-array>
+
+    <string-array name="DanhMucDoDienTu">
+        <item>Điện Thoại</item>
+        <item>Máy Tính Bảng</item>
+        <item>LapTop</item>
+        <item>Máy Tính Để Bàn</item>
+        <item>Máy Ảnh</item>
+        <item>Tivi</item>
+        <item>Thiết bị đeo thông minh</item>
+    </string-array>
+
+    <string-array name="DanhMucSach">
+        <item>Sách Giáo Khoa</item>
+        <item>Truyện</item>
+        <item>Sách Bài Tập</item>
+    </string-array>
+
+    <string-array name="DanhMucThoiTrang">
+        <item>Quần Áo</item>
+        <item>Giày Dép</item>
+        <item>Túi Xách</item>
+        <item>Đồng Hồ</item>
+        <item>Nước Hoa</item>
+    </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tim_kiem_navigation"
+    app:startDestination="@id/timKiemMatHangKetQuaFragment">
+
+    <fragment
+        tools:layout="@layout/fragment_tim_kiem_ket_qua"
+        android:id="@+id/timKiemMatHangKetQuaFragment"
+        android:name="com.dreamernguyen.AppRaoVatSaFaCo.Fragment.TimKiemMatHangKetQuaFragment"
+        android:label="TimKiemMatHangKetQuaFragment" >
+        <action
+            android:id="@+id/action_timKiemMatHangKetQuaFragment_to_timKiemMatHangThongTinFragment"
+            app:destination="@id/timKiemMatHangThongTinFragment" />
+        <action
+            android:id="@+id/action_timKiemMatHangKetQuaFragment_to_timKiemMatHangNhanhFragment"
+            app:destination="@id/timKiemMatHangNhanhFragment" />
+    </fragment>
+    <fragment
+        tools:layout="@layout/fragment_tim_kiem_thong_tin"
+        android:id="@+id/timKiemMatHangThongTinFragment"
+        android:name="com.dreamernguyen.AppRaoVatSaFaCo.Fragment.TimKiemMatHangThongTinFragment"
+        android:label="TimKiemMatHangThongTinFragment" >
+        <action
+            android:id="@+id/action_timKiemMatHangThongTinFragment_to_timKiemMatHangKetQuaFragment"
+            app:destination="@id/timKiemMatHangKetQuaFragment" />
+    </fragment>
+    <fragment
+        tools:layout="@layout/fragment_tim_kiem_nhanh"
+        android:id="@+id/timKiemMatHangNhanhFragment"
+        android:name="com.dreamernguyen.AppRaoVatSaFaCo.Fragment.TimKiemMatHangNhanhFragment"
+        android:label="TimKiemMatHangNhanhFragment" >
+        <action
+            android:id="@+id/action_timKiemMatHangNhanhFragment_to_timKiemMatHangKetQuaFragment"
+            app:destination="@id/timKiemMatHangKetQuaFragment" />
+    </fragment>
+</navigation>

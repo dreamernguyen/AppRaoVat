@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.XacThucActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Xác thực"
+            android:textSize="22sp" />
+        <TextView
+            android:id="@+id/tvXacThuc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Mã xác nhận đã được gửi đến số điện thoại "
+            android:layout_marginTop="30dp"
+            android:textSize="20sp"
+            style="@style/TextAppearance.MaterialComponents.Subtitle1"
+            />
+
+
+        <com.chaos.view.PinView
+            android:id="@+id/pinView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:itemCount="6"
+            app:itemHeight="50dp"
+            app:itemWidth="50dp"
+            app:lineWidth="3dp"
+            app:lineColor="@color/main_pink"
+            style="@style/PinWidget.PinView"
+            android:inputType="number"
+            android:itemBackground="@color/main_blue"
+            android:cursorVisible="true"
+            app:cursorColor="@color/black"
+            app:hideLineWhenFilled="true"
+            app:itemRadius="5dp"
+            android:layout_marginTop="30dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center">
+            <Button
+                android:id="@+id/btnXacThuc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Xác nhận"
+                android:textColor="@color/white"
+                android:backgroundTint="@color/main_blue"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+            <Button
+                android:id="@+id/btnGuiLaiMa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gửi lại mã"
+                android:layout_marginLeft="20dp"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

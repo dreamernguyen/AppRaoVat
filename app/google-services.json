@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "809171736285",
+    "project_id": "appraovatsafaco",
+    "storage_bucket": "appraovatsafaco.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:809171736285:android:72faa47c2f9950d0dc2d34",
+        "android_client_info": {
+          "package_name": "com.dreamernguyen.appraovatsafaco"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "809171736285-74cmqt7msso7d5m213pmslg35vk0shui.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAy8NBgurEtbOOn4xBFxLllaPzCjWahITY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "809171736285-74cmqt7msso7d5m213pmslg35vk0shui.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

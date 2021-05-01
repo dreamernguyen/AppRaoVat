@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_weight="50"
+    android:id="@+id/layout"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/layoutHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@color/main_blue"
+        android:orientation="vertical">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnTimKiemNhanh"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="2dp"
+            android:hint="Tìm kiếm"
+            android:paddingHorizontal="11dp"
+            android:paddingVertical="12dp"
+            android:textAlignment="viewStart"
+            android:textAllCaps="false"
+            app:backgroundTint="@color/white"
+            app:cornerRadius="25dp"
+            app:icon="@drawable/baseline_search_24"
+            app:iconGravity="end"
+            app:iconSize="20dp" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="49">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/lnDanhMuc"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:background="@drawable/header_background"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/main_blue"
+                    android:hint="KHÁM PHÁ DANH MỤC"
+                    android:padding="10dp"
+                    android:textColorHint="#000000"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvDanhMuc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp" />
+
+                <LinearLayout
+                    android:id="@+id/lnThemMatHang"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:transitionName="lnThemMatHang">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/imgAvatar"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="10dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/round_person_black_24dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnDangSanPham"
+                        style="@style/Widget.MaterialComponents.Button.TextButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:hint="Bạn muốn rao gì ?"
+                        android:paddingHorizontal="11dp"
+                        android:paddingVertical="12dp"
+                        android:textAlignment="center"
+                        android:textAllCaps="false"
+                        app:backgroundTint="@color/white"
+                        app:cornerRadius="25dp"
+                        app:iconGravity="end"
+                        app:iconSize="20dp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_below="@id/lnDanhMuc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="MẶT HÀNG MỚI NHẤT"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvDanhSach"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/text"
+                    android:background="@drawable/bo_tron"
+                    android:padding="10dp" />
+            </LinearLayout>
+
+        </RelativeLayout>
+    </ScrollView>
+</LinearLayout>

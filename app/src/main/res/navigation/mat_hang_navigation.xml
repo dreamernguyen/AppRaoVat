@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mat_hang_navigation"
+    app:startDestination="@id/dangMatHangDanhMucFragment">
+    <fragment
+        tools:layout="@layout/fragment_dang_mat_hang_danh_muc"
+        android:id="@+id/dangMatHangDanhMucFragment"
+        android:name="com.dreamernguyen.AppRaoVatSaFaCo.Fragment.DangMatHangDanhMucFragment"
+        android:label="DangMatHangDanhMucFragment" >
+        <action
+            android:id="@+id/actionDanhMucToHinhAnh"
+            app:destination="@id/dangMatHangHinhAnhFragment" />
+        <action
+            android:id="@+id/actionDanhMucToThongTin"
+            app:destination="@id/dangMatHangThongTinFragment" />
+    </fragment>
+    <fragment
+        tools:layout="@layout/fragment_dang_mat_hang_hinh_anh"
+        android:id="@+id/dangMatHangHinhAnhFragment"
+        android:name="com.dreamernguyen.AppRaoVatSaFaCo.Fragment.DangMatHangHinhAnhFragment"
+        android:label="DangMatHangHinhAnhFragment" >
+        <action
+            android:id="@+id/actionHinhAnhToDiaChi"
+            app:destination="@id/dangMatHangDiaChiFragment" />
+        <action
+            android:id="@+id/actionHinhAnhToDanhMuc"
+            app:destination="@id/dangMatHangDanhMucFragment" />
+    </fragment>
+    <fragment
+        tools:layout="@layout/fragment_dang_mat_hang_dia_chi"
+        android:id="@+id/dangMatHangDiaChiFragment"
+        android:name="com.dreamernguyen.AppRaoVatSaFaCo.Fragment.DangMatHangDiaChiFragment"
+        android:label="DangMatHangDiaChiFragment" >
+        <action
+            android:id="@+id/actionDiaChiToKhac"
+            app:destination="@id/dangMatHangKhacFragment" />
+        <action
+            android:id="@+id/actionDiaChiToThongTin"
+            app:destination="@id/dangMatHangThongTinFragment" />
+        <action
+            android:id="@+id/actionDiaChiToHinhAnh"
+            app:destination="@id/dangMatHangHinhAnhFragment" />
+    </fragment>
+    <fragment
+        tools:layout="@layout/fragment_dang_mat_hang_khac"
+        android:id="@+id/dangMatHangKhacFragment"
+        android:name="com.dreamernguyen.AppRaoVatSaFaCo.Fragment.DangMatHangKhacFragment"
+        android:label="DangMatHangKhacFragment" >
+        <action
+            android:id="@+id/actionKhacToDangMatHangFragment"
+            app:destination="@id/dangMatHangFragment" />
+        <action
+            android:id="@+id/actionKhacToDiaChi"
+            app:destination="@id/dangMatHangDiaChiFragment" />
+    </fragment>
+    <fragment
+        tools:layout="@layout/fragment_dang_mat_hang_thong_tin"
+        android:id="@+id/dangMatHangThongTinFragment"
+        android:name="com.dreamernguyen.AppRaoVatSaFaCo.Fragment.DangMatHangThongTinFragment"
+        android:label="DangMatHangThongTinFragment" >
+        <action
+            android:id="@+id/actionThongTinToDiaChi"
+            app:destination="@id/dangMatHangDiaChiFragment" />
+        <action
+            android:id="@+id/actionThongTinToDanhMuc"
+            app:destination="@id/dangMatHangDanhMucFragment" />
+    </fragment>
+    <fragment
+        tools:layout="@layout/fragment_dang_mat_hang"
+        android:id="@+id/dangMatHangFragment"
+        android:name="com.dreamernguyen.AppRaoVatSaFaCo.Fragment.DangMatHangFragment"
+        android:label="DangMatHangFragment" >
+        <action
+            android:id="@+id/actionDangMatHangToKhac"
+            app:destination="@id/dangMatHangKhacFragment" />
+        <action
+            android:id="@+id/actionDangMatHangToDiaChi"
+            app:destination="@id/dangMatHangDiaChiFragment" />
+        <action
+            android:id="@+id/actionDangMatHangToHinhAnh"
+            app:destination="@id/dangMatHangHinhAnhFragment" />
+        <action
+            android:id="@+id/actionDangMatHangToDanhMuc"
+            app:destination="@id/dangMatHangDanhMucFragment" />
+    </fragment>
+
+</navigation>
