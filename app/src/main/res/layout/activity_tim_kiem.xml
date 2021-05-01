@@ -79,6 +79,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/white">
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnDanhMuc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Tất cả"
@@ -91,19 +92,26 @@
                     android:textColor="@color/black"
                     android:layout_marginLeft="10dp"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
-                <com.google.android.material.button.MaterialButton
+                <Spinner
+                    android:id="@+id/spnSapXep"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Thời gian mới nhất"
-                    android:textSize="16sp"
-                    android:textAllCaps="false"
-                    android:enabled="false"
-                    app:icon="@drawable/baseline_arrow_drop_down_24"
-                    app:iconGravity="end"
-                    app:iconTint="@color/black"
-                    android:textColor="@color/black"
+                    android:layout_height="35dp"
                     android:layout_marginLeft="20dp"
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+                    android:layout_gravity="center"
+                    />
+<!--                <com.google.android.material.button.MaterialButton-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Thời gian mới nhất"-->
+<!--                    android:textSize="16sp"-->
+<!--                    android:textAllCaps="false"-->
+<!--                    android:enabled="false"-->
+<!--                    app:icon="@drawable/baseline_arrow_drop_down_24"-->
+<!--                    app:iconGravity="end"-->
+<!--                    app:iconTint="@color/black"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:layout_marginLeft="20dp"-->
+<!--                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>-->
 
             </LinearLayout>
             <TextView

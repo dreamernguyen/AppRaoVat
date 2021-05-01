@@ -7,38 +7,107 @@
     android:orientation="vertical"
     tools:context=".Activity.TimKiemMatHangActivity">
 
-    <TextView
+    <LinearLayout
+        android:id="@+id/layoutHeader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="KetQua" />
+        android:layout_weight="1"
+        android:background="@color/main_blue"
+        android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/edTieuDe"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:boxCornerRadiusBottomEnd="50dp"
+            app:boxCornerRadiusBottomStart="50dp"
+            app:boxCornerRadiusTopEnd="50dp"
+            app:boxCornerRadiusTopStart="50dp"
+            app:boxBackgroundColor="@color/white"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginVertical="5dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edTimKiem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nhà trọ"
+                android:maxLines="1"
+                android:drawableEnd="@drawable/baseline_search_24"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:icon="@drawable/baseline_place_24"
+                app:iconTint="@color/HotPink"
+                android:text="Khu vực :"
+                android:textSize="16sp"
+                android:textAllCaps="false"
+                android:enabled="false"
+                android:textColor="@color/black"
+                style="@style/Widget.MaterialComponents.Button.TextButton"/>
 
-    <TextView
-        android:padding="30dp"
-        android:id="@+id/tvDiaChi"
+            <TextView
+                android:id="@+id/tvDiaChi"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Đà Nẵng"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="17sp"
+                android:drawablePadding="5dp"
+                android:drawableEnd="@drawable/baseline_arrow_drop_down_24"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnDanhMuc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tất cả"
+                android:textSize="14sp"
+                android:textAllCaps="false"
+                android:enabled="false"
+                app:icon="@drawable/baseline_arrow_drop_down_24"
+                app:iconGravity="end"
+                app:iconTint="@color/black"
+                android:textColor="@color/black"
+                android:layout_marginLeft="10dp"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+            <Spinner
+                android:id="@+id/spnSapXep"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_marginLeft="20dp"
+                android:layout_gravity="center"
+                style="@style/Widget.AppCompat.Spinner.DropDown"
+                />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Dia Chi" />
+        android:background="@color/white"
+        android:layout_weight="49">
 
-    <TextView
-        android:padding="30dp"
-        android:id="@+id/tvHangMuc"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="HangMuc" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
-    <Spinner
-        android:id="@+id/tvSapXep"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Sap xep" />
+    </ScrollView>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+
+
+
 </LinearLayout>

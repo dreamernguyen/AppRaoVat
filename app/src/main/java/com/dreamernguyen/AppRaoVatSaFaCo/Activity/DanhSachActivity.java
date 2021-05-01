@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.dreamernguyen.AppRaoVatSaFaCo.Adapter.BaiVietAdapter;
 import com.dreamernguyen.AppRaoVatSaFaCo.Adapter.BaiVietYeuThichAdapter;
 import com.dreamernguyen.AppRaoVatSaFaCo.Adapter.MatHangAdapter;
+import com.dreamernguyen.AppRaoVatSaFaCo.Adapter.MatHangAdapter2;
 import com.dreamernguyen.AppRaoVatSaFaCo.ApiService;
 import com.dreamernguyen.AppRaoVatSaFaCo.LocalDataManager;
 import com.dreamernguyen.AppRaoVatSaFaCo.Models.DuLieuTraVe;
@@ -29,7 +30,7 @@ import retrofit2.Response;
 public class DanhSachActivity extends AppCompatActivity {
     RecyclerView rvDanhSach;
     BaiVietYeuThichAdapter baiVietYeuThichAdapter;
-    MatHangAdapter matHangAdapter;
+    MatHangAdapter2 matHangAdapter;
     SwipeRefreshLayout refreshLayout;
     TextView tvThongBao,tvTenDanhSach;
     @Override
@@ -80,7 +81,7 @@ public class DanhSachActivity extends AppCompatActivity {
             }
             if(i.getStringExtra("ChucNang").equals("MatHangQuanTam")){
                 tvTenDanhSach.setText("Danh sách mặt hàng quan tâm");
-                matHangAdapter = new MatHangAdapter(DanhSachActivity.this);
+                matHangAdapter = new MatHangAdapter2(DanhSachActivity.this);
                 LinearLayoutManager linearLayoutManager = new LinearLayoutManager(DanhSachActivity.this, RecyclerView.VERTICAL,false);
                 rvDanhSach.setLayoutManager(linearLayoutManager);
                 rvDanhSach.setAdapter(matHangAdapter);

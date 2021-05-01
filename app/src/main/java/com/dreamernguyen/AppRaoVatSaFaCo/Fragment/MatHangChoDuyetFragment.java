@@ -13,14 +13,13 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.dreamernguyen.AppRaoVatSaFaCo.Activity.MatHangToiRaoActivity;
-import com.dreamernguyen.AppRaoVatSaFaCo.Adapter.BaiVietAdapter;
-import com.dreamernguyen.AppRaoVatSaFaCo.Adapter.MatHangAdapter;
+import com.dreamernguyen.AppRaoVatSaFaCo.Adapter.MatHangAdapter2;
 import com.dreamernguyen.AppRaoVatSaFaCo.R;
 
 
 public class MatHangChoDuyetFragment extends Fragment {
     RecyclerView rvMatHang;
-    MatHangAdapter matHangAdapter;
+    MatHangAdapter2 matHangAdapter;
     SwipeRefreshLayout refreshLayout;
     TextView tvTrong;
 
@@ -32,7 +31,7 @@ public class MatHangChoDuyetFragment extends Fragment {
         tvTrong = view.findViewById(R.id.tvTrong);
         rvMatHang =  view.findViewById(R.id.rvMatHang);
         refreshLayout = view.findViewById(R.id.refreshLayout);
-        matHangAdapter = new MatHangAdapter(getContext());
+        matHangAdapter = new MatHangAdapter2(getContext());
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL,false);
         rvMatHang.setLayoutManager(linearLayoutManager);
         rvMatHang.setAdapter(matHangAdapter);

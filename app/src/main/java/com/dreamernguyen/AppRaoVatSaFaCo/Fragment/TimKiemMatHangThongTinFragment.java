@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -46,7 +47,6 @@ public class TimKiemMatHangThongTinFragment extends Fragment {
     DiaChiAdapter diaChiAdapter;
     ThongTinAdapter thongTinAdapter;
     RecyclerView rv;
-
     TextView tvBack;
 
     List<String> DanhMuc = new ArrayList<>();
@@ -150,6 +150,8 @@ public class TimKiemMatHangThongTinFragment extends Fragment {
         thongTinAdapter.setData(DanhMuc);
 
         rv.setAdapter(thongTinAdapter);
+        RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL);
+        rv.addItemDecoration(itemDecoration);
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
 
 
@@ -293,6 +295,8 @@ public class TimKiemMatHangThongTinFragment extends Fragment {
         }
 
         rv.setAdapter(thongTinAdapter);
+        RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL);
+        rv.addItemDecoration(itemDecoration);
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
 
     }
@@ -329,6 +333,8 @@ public class TimKiemMatHangThongTinFragment extends Fragment {
                     diaChiAdapter.setListTinh(listTinh);
                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
                     rv.setLayoutManager(linearLayoutManager);
+                    RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL);
+                    rv.addItemDecoration(itemDecoration);
                     rv.setAdapter(diaChiAdapter);
 
                 } catch (JSONException e) {
@@ -372,6 +378,8 @@ public class TimKiemMatHangThongTinFragment extends Fragment {
                     diaChiAdapter.setListQuan(listQuan);
                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
                     rv.setLayoutManager(linearLayoutManager);
+                    RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL);
+                    rv.addItemDecoration(itemDecoration);
                     rv.setAdapter(diaChiAdapter);
 
                 } catch (JSONException e) {

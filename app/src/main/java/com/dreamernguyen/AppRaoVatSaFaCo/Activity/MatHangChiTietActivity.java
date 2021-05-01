@@ -1,6 +1,7 @@
 package com.dreamernguyen.AppRaoVatSaFaCo.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
@@ -23,11 +24,13 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.dreamernguyen.AppRaoVatSaFaCo.Adapter.AnhAdapter;
 import com.dreamernguyen.AppRaoVatSaFaCo.Adapter.AnhBaiVietAdapter;
+import com.dreamernguyen.AppRaoVatSaFaCo.Adapter.NguoiDungAdapter;
 import com.dreamernguyen.AppRaoVatSaFaCo.ApiService;
 import com.dreamernguyen.AppRaoVatSaFaCo.LocalDataManager;
 import com.dreamernguyen.AppRaoVatSaFaCo.Models.DuLieuTraVe;
 import com.dreamernguyen.AppRaoVatSaFaCo.Models.MatHang;
 import com.dreamernguyen.AppRaoVatSaFaCo.R;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.checkbox.MaterialCheckBox;
 import com.google.android.material.chip.Chip;
@@ -54,8 +57,8 @@ public class MatHangChiTietActivity extends AppCompatActivity {
     Intent intent;
     MaterialCheckBox chkLuuTin;
     CircleImageView imgAvatar;
-    LinearLayout layout1,layout2;
-    MaterialButton btnSuaTin,btnXoaTin,btnBaoCao;
+    LinearLayout layout1,layout2, lnNguoiMua;
+    MaterialButton btnSuaTin,btnXoaTin,btnBaoCao,btnDanhSachQuanTam;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,11 +108,16 @@ public class MatHangChiTietActivity extends AppCompatActivity {
                 if(matHang.getIdNguoiDung().getId().equals(LocalDataManager.getIdNguoiDung())){
                     btnSuaTin.setVisibility(View.VISIBLE);
                     btnXoaTin.setVisibility(View.VISIBLE);
+                    btnDanhSachQuanTam.setVisibility(View.VISIBLE);
+                    lnNguoiMua.setVisibility(View.GONE);
                     chkLuuTin.setVisibility(View.GONE);
                     btnBaoCao.setVisibility(View.GONE);
+
                 }else {
                     btnSuaTin.setVisibility(View.GONE);
                     btnXoaTin.setVisibility(View.GONE);
+                    btnDanhSachQuanTam.setVisibility(View.GONE);
+                    lnNguoiMua.setVisibility(View.VISIBLE);
                     chkLuuTin.setVisibility(View.VISIBLE);
                     btnBaoCao.setVisibility(View.VISIBLE);
                 }
@@ -256,7 +264,37 @@ public class MatHangChiTietActivity extends AppCompatActivity {
                     }
                 });
                 Glide.with(getApplicationContext()).load(mLinkAnh).into(imgAvatar);
-                Log.d("linkAnhAvatar", "onResponse: "+ mLinkAnh);
+                BottomSheetDialog bottomSheetDialog2 = new BottomSheetDialog(MatHangChiTietActivity.this,R.style.BottomSheetThemeCustom);
+                View viewDialog2 =   getLayoutInflater().inflate(R.layout.dialog_luot_thich, new LinearLayout(MatHangChiTietActivity.this));
+                bottomSheetDialog2.setContentView(viewDialog2);
+
+                RecyclerView rvLuotThich = viewDialog2.findViewById(R.id.rvLuotThich);
+                TextView tv = viewDialog2.findViewById(R.id.tvThongBao);
+                TextView tv2 = viewDialog2.findViewById(R.id.tv);
+                tv2.setText("Danh sách người quan tâm");
+                if (matHang.getNguoiQuanTam().size() == 0){
+                    tv.setVisibility(View.VISIBLE);
+                    tv.setText("Chưa có người quan tâm");
+                    rvLuotThich.setVisibility(View.GONE);
+                }else {
+                    tv.setVisibility(View.GONE);
+                    rvLuotThich.setVisibility(View.VISIBLE);
+                    btnDanhSachQuanTam.setText("Đã có "+matHang.getNguoiQuanTam().size()+ " người quan tâm đến mặt hàng của bạn ! Xem ngay là ai nào !");
+                }
+                rvLuotThich.setLayoutManager(new LinearLayoutManager(MatHangChiTietActivity.this,RecyclerView.VERTICAL,false));
+                NguoiDungAdapter nguoiDungAdapter = new NguoiDungAdapter(MatHangChiTietActivity.this);
+                rvLuotThich.setAdapter(nguoiDungAdapter);
+                RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(getApplicationContext(),DividerItemDecoration.VERTICAL);
+                rvLuotThich.addItemDecoration(itemDecoration);
+                nguoiDungAdapter.setData(matHang.getNguoiQuanTam());
+
+                btnDanhSachQuanTam.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        bottomSheetDialog2.show();
+                    }
+                });
+
             }
 
             @Override
@@ -301,6 +339,7 @@ public class MatHangChiTietActivity extends AppCompatActivity {
         tvSdt = findViewById(R.id.tvSdt);
         imgAvatar = findViewById(R.id.imgAvatar);
         btnSuaTin=findViewById(R.id.btnSuaTin);
+        btnDanhSachQuanTam = findViewById(R.id.btnDanhSachQuanTam);
         btnXoaTin=findViewById(R.id.btnXoaTin);
         btnBaoCao = findViewById(R.id.btnBaoCao);
         tvHoTen = findViewById(R.id.tvHoTen);
@@ -314,6 +353,7 @@ public class MatHangChiTietActivity extends AppCompatActivity {
         tvHoTen2 = findViewById(R.id.tvHoTen2);
         layout1 = findViewById(R.id.layout1);
         layout2 = findViewById(R.id.layout2);
+        lnNguoiMua = findViewById(R.id.lnNguoiMua);
 
     }
     public void loadBundle(){

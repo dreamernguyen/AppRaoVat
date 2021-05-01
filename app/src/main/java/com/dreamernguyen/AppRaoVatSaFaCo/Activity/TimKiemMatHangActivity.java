@@ -2,8 +2,12 @@
 package com.dreamernguyen.AppRaoVatSaFaCo.Activity;
 
         import android.content.Intent;
+        import android.graphics.Color;
         import android.os.Bundle;
         import android.util.Log;
+        import android.view.View;
+        import android.view.Window;
+        import android.view.WindowManager;
 
         import androidx.appcompat.app.AppCompatActivity;
 
@@ -23,6 +27,7 @@ public class TimKiemMatHangActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tim_kiem_mat_hang);
+
 
         Intent intent = getIntent();
         String HangMuc = intent.getStringExtra("hangMuc");

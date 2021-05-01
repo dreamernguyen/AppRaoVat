@@ -54,7 +54,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class BaiVietYeuThichAdapter extends RecyclerView.Adapter<BaiVietYeuThichAdapter.BaiVietViewHolder> {
-    private AnhBaiVietAdapter anhBaiVietAdapter;
     private Context context;
     private List<BaiViet> listBaiViet;
 
@@ -115,9 +114,19 @@ public class BaiVietYeuThichAdapter extends RecyclerView.Adapter<BaiVietYeuThich
         }
 
         if(baiViet.getLinkAnh().size() > 0){
-            anhBaiVietAdapter  = new AnhBaiVietAdapter(baiViet.getLinkAnh(),false);
             Glide.with(context).load(baiViet.getLinkAnh().get(0)).into(holder.imageView);
         }
+        holder.tvTenNguoiDung.setText(baiViet.getIdNguoiDung().getHoTen());
+        holder.tvNoiDung.setText(baiViet.getNoiDung());
+        holder.layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, BaiVietChiTietActivity.class);
+                intent.putExtra("chucNang","Xem");
+                intent.putExtra("idBaiViet", baiViet.getId());
+                context.startActivity(intent);
+            }
+        });
 
     }
 
@@ -132,14 +141,16 @@ public class BaiVietYeuThichAdapter extends RecyclerView.Adapter<BaiVietYeuThich
     public class BaiVietViewHolder extends RecyclerView.ViewHolder {
         TextView tvTenNguoiDung, tvThoiGian, tvNoiDung;
         ImageView imageView;
+        LinearLayout layout;
 
 
         public BaiVietViewHolder(@NonNull View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.imgAnhBaiViet);
             tvTenNguoiDung = itemView.findViewById(R.id.tvTenNguoiDung);
-            tvThoiGian = itemView.findViewById(R.id.tvThoiGian2);
+            tvThoiGian = itemView.findViewById(R.id.tvThoiGian);
             tvNoiDung = itemView.findViewById(R.id.tvNoiDung);
+            layout = itemView.findViewById(R.id.layout);
 
         }
     }

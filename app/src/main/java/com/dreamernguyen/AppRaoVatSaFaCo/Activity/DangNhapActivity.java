@@ -153,11 +153,11 @@ public class DangNhapActivity extends AppCompatActivity implements GoogleApiClie
         });
         edSDT.setText("0361234111");
         edMatKhau.setText("admin1234");
-        if(mApiClient.isConnected()){
-            if(LocalDataManager.getIdNguoiDung().equals("")){
-                mApiClient.clearDefaultAccountAndReconnect();
-            }
-        }
+//        if(mApiClient.isConnected()){
+//            if(LocalDataManager.getIdNguoiDung().equals("")){
+//                mApiClient.clearDefaultAccountAndReconnect();
+//            }
+//        }
     }
 
     private void signIn() {

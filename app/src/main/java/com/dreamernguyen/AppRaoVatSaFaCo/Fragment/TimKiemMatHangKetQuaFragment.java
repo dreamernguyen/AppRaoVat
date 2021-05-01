@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.dreamernguyen.AppRaoVatSaFaCo.Activity.TimKiemMatHangActivity;
 import com.dreamernguyen.AppRaoVatSaFaCo.Adapter.MatHangAdapter;
+import com.dreamernguyen.AppRaoVatSaFaCo.Adapter.MatHangAdapter2;
 import com.dreamernguyen.AppRaoVatSaFaCo.ApiService;
 import com.dreamernguyen.AppRaoVatSaFaCo.DataBase.TimKiemDataBase;
 import com.dreamernguyen.AppRaoVatSaFaCo.Models.DuLieuTraVe;
@@ -39,7 +40,7 @@ public class TimKiemMatHangKetQuaFragment extends Fragment {
     Spinner tvSapXep;
     RecyclerView rv;
 
-    MatHangAdapter matHangAdapter;
+    MatHangAdapter2 matHangAdapter;
 
 
     @Nullable
@@ -54,8 +55,8 @@ public class TimKiemMatHangKetQuaFragment extends Fragment {
 
         edTieuDe = view.findViewById(R.id.edTieuDe);
         tvDiaChi = view.findViewById(R.id.tvDiaChi);
-        tvHangMuc = view.findViewById(R.id.tvHangMuc);
-        tvSapXep = view.findViewById(R.id.tvSapXep);
+        tvHangMuc = view.findViewById(R.id.btnDanhMuc);
+        tvSapXep = view.findViewById(R.id.spnSapXep);
         rv = view.findViewById(R.id.rv);
 
 
@@ -71,7 +72,7 @@ public class TimKiemMatHangKetQuaFragment extends Fragment {
             tvDiaChi.setText(TimKiemMatHangActivity.timKiemTemp.getDiaChi());
         }
 
-        matHangAdapter = new MatHangAdapter(getContext());
+        matHangAdapter = new MatHangAdapter2(getContext());
         rv.setAdapter(matHangAdapter);
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
 

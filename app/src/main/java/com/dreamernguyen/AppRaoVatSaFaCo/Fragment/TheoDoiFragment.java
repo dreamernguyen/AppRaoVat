@@ -90,7 +90,7 @@ public class TheoDoiFragment extends Fragment {
             @Override
             public void onFailure(Call<DuLieuTraVe> call, Throwable t) {
                 Log.d("loadBaiVietTheoDoi", "onFailure: "+t.getMessage());
-                Toast.makeText(getActivity(), "Lỗi load bài viết theo dõi !\n"+t.getMessage(), Toast.LENGTH_SHORT).show();
+
             }
         });
 

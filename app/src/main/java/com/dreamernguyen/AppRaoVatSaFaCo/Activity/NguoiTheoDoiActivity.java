@@ -57,6 +57,7 @@ public class NguoiTheoDoiActivity extends AppCompatActivity {
         }
         tabLayout = findViewById(R.id.tab_layout_nguoi_dung);
         viewPager = findViewById(R.id.nguoi_dung_viewpager);
+        tabLayout.setTabTextColors(getResources().getColor(R.color.black_overlay),getResources().getColor(R.color.main_pink));
         tabLayoutAdapter = new TabLayoutNguoiDungAdapter(getSupportFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         loadNguoiTheoDoi();
 

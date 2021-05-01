@@ -461,6 +461,14 @@ public class BaiVietAdapter extends RecyclerView.Adapter<BaiVietAdapter.BaiVietV
         bottomSheetDialog2.setContentView(viewDialog2);
 
         RecyclerView rvLuotThich = viewDialog2.findViewById(R.id.rvLuotThich);
+        TextView tv = viewDialog2.findViewById(R.id.tvThongBao);
+        if (baiViet.getLuotThich().size() == 0){
+            tv.setVisibility(View.VISIBLE);
+            rvLuotThich.setVisibility(View.GONE);
+        }else {
+            tv.setVisibility(View.GONE);
+            rvLuotThich.setVisibility(View.VISIBLE);
+        }
         rvLuotThich.setLayoutManager(new LinearLayoutManager(context,RecyclerView.VERTICAL,false));
         NguoiDungAdapter nguoiDungAdapter = new NguoiDungAdapter(context);
         rvLuotThich.setAdapter(nguoiDungAdapter);
