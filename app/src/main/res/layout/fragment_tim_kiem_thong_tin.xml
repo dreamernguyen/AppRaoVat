@@ -1,11 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tvBack"
-        android:text="thongtin"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/DodgerBlue">
+        <ImageView
+            android:id="@+id/imgBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:padding="5dp"
+            android:src="@drawable/ic_back" />
+
+        <TextView
+            android:id="@+id/tvTieuDe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="10dp"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:text="Thông tin"/>
+
+    </RelativeLayout>
+    <androidx.appcompat.widget.SearchView
+
+        app:queryHint="Nhập địa chỉ tìm kiếm"
+        app:defaultQueryHint="Nhập địa chỉ tìm kiếm"
+        app:iconifiedByDefault="false"
+        android:id="@+id/sv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <androidx.recyclerview.widget.RecyclerView

@@ -77,6 +77,7 @@ public class DangKyActivity extends AppCompatActivity {
                                 layoutSDT.setError(response.body().getThongBao());
                             }else {
                                 Intent i = new Intent(getApplicationContext(),XacThucActivity.class);
+                                i.putExtra("activity", "DangKy");
                                 i.putExtra("SDT",mSDT);
                                 i.putExtra("hoTen",mHoTen);
                                 i.putExtra("matKhau",mMatKhau);

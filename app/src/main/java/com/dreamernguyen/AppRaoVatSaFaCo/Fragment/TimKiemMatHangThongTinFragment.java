@@ -1,14 +1,17 @@
 package com.dreamernguyen.AppRaoVatSaFaCo.Fragment;
 
+import android.app.SearchManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
@@ -47,7 +50,9 @@ public class TimKiemMatHangThongTinFragment extends Fragment {
     DiaChiAdapter diaChiAdapter;
     ThongTinAdapter thongTinAdapter;
     RecyclerView rv;
-    TextView tvBack;
+    ImageView imgBack;
+    TextView tvTieuDe;
+    SearchView searchView;
 
     List<String> DanhMuc = new ArrayList<>();
     List<String> DanhMucBatDongSan = new ArrayList<>();
@@ -80,14 +85,16 @@ public class TimKiemMatHangThongTinFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        searchView=view.findViewById(R.id.sv);
         rv = view.findViewById(R.id.rv);
-        tvBack = view.findViewById(R.id.tvBack);
+        imgBack = view.findViewById(R.id.imgBack);
+        tvTieuDe = view.findViewById(R.id.tvTieuDe);
 
 
         rv.setAdapter(thongTinAdapter);
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        tvBack.setOnClickListener(new View.OnClickListener() {
+        imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Navigation.findNavController(v).popBackStack();
@@ -100,10 +107,9 @@ public class TimKiemMatHangThongTinFragment extends Fragment {
     private void themThongTin(int viTri) {
         switch (viTri) {
             case 0:
-                Log.d("TAG", "themThongTin: " + "danhMuc");
-
+                searchView.setVisibility(View.GONE);
                 String danhMuc = TimKiemMatHangActivity.timKiemTemp.getDanhMuc();
-
+                tvTieuDe.setText("Hạng mục");
                 if (danhMuc != null && !danhMuc.isEmpty()) {
                     hienThiDanhMucCon(danhMuc);
                 } else {
@@ -113,6 +119,8 @@ public class TimKiemMatHangThongTinFragment extends Fragment {
                 break;
 
             case 1:
+                searchView.setVisibility(View.VISIBLE);
+
                 loadTinh();
                 break;
 
@@ -121,8 +129,8 @@ public class TimKiemMatHangThongTinFragment extends Fragment {
     }
 
     public void hienThiDanhMucGoc() {
-
-        tvBack.setOnClickListener(new View.OnClickListener() {
+        tvTieuDe.setText("Hạng mục");
+        imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -158,9 +166,9 @@ public class TimKiemMatHangThongTinFragment extends Fragment {
     }
 
     public void hienThiDanhMucCon(String danhMuc) {
-
+        tvTieuDe.setText("Hạng mục con");
         if (DanhMucBatDongSan.contains(danhMuc) || danhMuc.equals("Bất Động Sản")) {
-            tvBack.setOnClickListener(new View.OnClickListener() {
+            imgBack.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     hienThiDanhMucGoc();
@@ -185,7 +193,7 @@ public class TimKiemMatHangThongTinFragment extends Fragment {
 
         }
         if (DanhMucXeCo.contains(danhMuc) || danhMuc.equals("Xe Cộ")) {
-            tvBack.setOnClickListener(new View.OnClickListener() {
+            imgBack.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
@@ -212,7 +220,7 @@ public class TimKiemMatHangThongTinFragment extends Fragment {
 
         }
         if (DanhMucDoDienTu.contains(danhMuc) || danhMuc.equals("Đồ Điện Tử")) {
-            tvBack.setOnClickListener(new View.OnClickListener() {
+            imgBack.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
@@ -238,7 +246,7 @@ public class TimKiemMatHangThongTinFragment extends Fragment {
 
         }
         if (DanhMucSach.contains(danhMuc) || danhMuc.equals("Sách")) {
-            tvBack.setOnClickListener(new View.OnClickListener() {
+            imgBack.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
@@ -266,7 +274,7 @@ public class TimKiemMatHangThongTinFragment extends Fragment {
 
         }
         if (DanhMucThoiTrang.contains(danhMuc) || danhMuc.equals("Thời Trang")) {
-            tvBack.setOnClickListener(new View.OnClickListener() {
+            imgBack.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
@@ -302,6 +310,7 @@ public class TimKiemMatHangThongTinFragment extends Fragment {
     }
 
     private void loadTinh() {
+        tvTieuDe.setText("Tỉnh, thành phố");
         RequestQueue requestQueue = Volley.newRequestQueue(getContext());
         String strUrl = "https://vapi.vnappmob.com/api/province/";
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, strUrl, null, new com.android.volley.Response.Listener<JSONObject>() {
@@ -331,6 +340,26 @@ public class TimKiemMatHangThongTinFragment extends Fragment {
                     });
 
                     diaChiAdapter.setListTinh(listTinh);
+
+                    ///////////
+                    SearchManager searchManager = (SearchManager) getContext().getSystemService(getContext().SEARCH_SERVICE);
+                    searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
+                    searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                        @Override
+                        public boolean onQueryTextSubmit(String query) {
+                            diaChiAdapter.getFilter().filter(query);
+
+                            return false;
+                        }
+
+                        @Override
+                        public boolean onQueryTextChange(String newText) {
+                            diaChiAdapter.getFilter().filter(newText);
+                            return false;
+                        }
+                    });
+                    //////////
+
                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
                     rv.setLayoutManager(linearLayoutManager);
                     RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL);
@@ -351,6 +380,7 @@ public class TimKiemMatHangThongTinFragment extends Fragment {
     }
 
     private void loadQuan(String id) {
+        tvTieuDe.setText("Quận, huyện");
         RequestQueue requestQueue = Volley.newRequestQueue(getContext());
         String strUrl = "https://vapi.vnappmob.com/api/province/district/" + id;
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, strUrl, null, new com.android.volley.Response.Listener<JSONObject>() {
@@ -376,6 +406,25 @@ public class TimKiemMatHangThongTinFragment extends Fragment {
                         TimKiemDataBase.getInstance(getContext()).timKiemDAO().UpdateTemp(timKiem);
                     });
                     diaChiAdapter.setListQuan(listQuan);
+
+                    SearchManager searchManager = (SearchManager) getContext().getSystemService(getContext().SEARCH_SERVICE);
+                    searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
+                    searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                        @Override
+                        public boolean onQueryTextSubmit(String query) {
+                            diaChiAdapter.getFilter().filter(query);
+
+                            return false;
+                        }
+
+                        @Override
+                        public boolean onQueryTextChange(String newText) {
+                            diaChiAdapter.getFilter().filter(newText);
+                            return false;
+                        }
+                    });
+
+
                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
                     rv.setLayoutManager(linearLayoutManager);
                     RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL);
@@ -395,5 +444,18 @@ public class TimKiemMatHangThongTinFragment extends Fragment {
         requestQueue.add(jsonObjectRequest);
     }
 
+    public void loadSearch(){
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+    }
 
 }

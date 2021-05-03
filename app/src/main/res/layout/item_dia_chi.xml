@@ -9,7 +9,9 @@
             android:id="@+id/tvTenDiaChi"
             android:layout_width="match_parent"
             android:textSize="16sp"
-            android:padding="5dp"
+            android:paddingVertical="15dp"
+            android:paddingHorizontal="20dp"
+            android:textStyle="bold"
             android:layout_height="wrap_content"/>
 
 </LinearLayout>

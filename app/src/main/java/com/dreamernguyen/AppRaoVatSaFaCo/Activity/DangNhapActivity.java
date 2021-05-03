@@ -145,19 +145,28 @@ public class DangNhapActivity extends AppCompatActivity implements GoogleApiClie
 
             }
         });
+        edSDT.setText("0361234111");
+        edMatKhau.setText("admin1234");
+
         tvQuenMatKhau.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mApiClient.clearDefaultAccountAndReconnect();
+                if (edSDT.getText().toString().trim().isEmpty()) {
+                    layoutSDT.setError("Nhập số điện thoại để lấy lại mật khẩu !");
+                }
+                if (edMatKhau.getText().toString().trim().isEmpty()) {
+                    layoutMatKhau.setError("Nhập mật khẩu mới !");
+                }
+                if(!edSDT.getText().toString().trim().isEmpty() && !edMatKhau.getText().toString().trim().isEmpty() && edSDT.getText().toString().length() == 10) {
+                    Intent i = new Intent(getApplicationContext(), XacThucActivity.class);
+                    i.putExtra("activity", "DangNhap");
+                    i.putExtra("SDT", edSDT.getText().toString());
+                    i.putExtra("matKhau", edMatKhau.getText().toString());
+                    startActivity(i);
+                }
             }
         });
-        edSDT.setText("0361234111");
-        edMatKhau.setText("admin1234");
-//        if(mApiClient.isConnected()){
-//            if(LocalDataManager.getIdNguoiDung().equals("")){
-//                mApiClient.clearDefaultAccountAndReconnect();
-//            }
-//        }
+
     }
 
     private void signIn() {
@@ -293,6 +302,8 @@ public class DangNhapActivity extends AppCompatActivity implements GoogleApiClie
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
         Toast.makeText(this, "Kết nối lỗi", Toast.LENGTH_SHORT).show();
     }
+
+
 
 
 }

@@ -75,6 +75,14 @@ public interface ApiService {
     @POST("nguoiDung/doiMatKhau/{id}")
     Call<DuLieuTraVe> doiMatKhau(@Path("id") String idNguoiDung, @Field("matKhauCu") String matKhauCu,@Field("matKhauMoi") String matKhauMoi);
 
+    @FormUrlEncoded
+    @POST("nguoiDung/themSoDienThoai/{id}")
+    Call<DuLieuTraVe> themSoDienThoai(@Path("id") String idNguoiDung, @Field("soDienThoai") String soDienThoai);
+
+    @FormUrlEncoded
+    @POST("nguoiDung/quenMatKhau/{id}")
+    Call<DuLieuTraVe> quenMatKhau(@Field("soDienThoai") String soDienThoai, @Field("matKhauMoi") String matKhauMoi);
+
     //Bài viết
     @GET("baiViet/danhSach")
     Call<DuLieuTraVe> danhSachBaiViet();
@@ -182,6 +190,11 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("matHang/boQuanTam")
     Call<DuLieuTraVe> boQquanTam(@Field("idMatHang") String idMatHang,@Field("idNguoiDung") String idNguoiDung);
+
+    @FormUrlEncoded
+    @POST("matHang/baoCao")
+    Call<DuLieuTraVe> baoCaoMatHang(@Field("idMatHang") String idMatHang,@Field("idNguoiDung") String idNguoiDung,@Field("noiDungBaoCao") String noiDungBaoCao);
+
     //Thông báo
     @GET("thongBao/danhSach/{id}")
     Call<List<ThongBao>> danhSachThongBao(@Path("id")String id);

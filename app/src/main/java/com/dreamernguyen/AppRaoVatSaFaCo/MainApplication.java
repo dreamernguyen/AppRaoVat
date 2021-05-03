@@ -26,13 +26,11 @@ public class MainApplication extends Application {
     public static final String CHANNEL_ID3 = "Thông báo";
 
 
-
     @Override
     public void onCreate() {
         super.onCreate();
         MediaManager.init(this);
         LocalDataManager.init(getApplicationContext());
-        LocalDataManager.setIdNguoiDung("6076c7f2c909c828d1f5cb90");
         createNotificationChannel();
         capQuyen();
 
@@ -53,7 +51,7 @@ public class MainApplication extends Application {
             public void onPermissionDenied(List<String> deniedPermissions) {
                 Toast.makeText(MainApplication.this, "Chưa cấp quyền !", Toast.LENGTH_SHORT).show();
             }
-        }).setPermissions(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CAMERA)
+        }).setPermissions(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CAMERA,Manifest.permission.CALL_PHONE)
                 .setDeniedTitle("Cài đặt cho phép truy cập").setDeniedMessage("Vui lòng bật quyền truy cập tại [Cài đặt] > [Quyền]").check();
     }
 

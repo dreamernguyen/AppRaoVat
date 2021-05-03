@@ -30,10 +30,10 @@
 
 
     <string-array name="SapXep">
-        <item>Giá bán tăng dần</item>
-        <item>Giá bán giảm dần</item>
         <item>Thời gian mới nhất</item>
         <item>Thời gian cũ nhất</item>
+        <item>Giá bán tăng dần</item>
+        <item>Giá bán giảm dần</item>
     </string-array>
 
     <string-array name="DanhMucDoDienTu">

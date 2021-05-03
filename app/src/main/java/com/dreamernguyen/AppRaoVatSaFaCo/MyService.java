@@ -113,17 +113,17 @@ public class MyService extends Service {
                 Log.d("test", "Socket ngủm r");
                 stopForeground(true);
 
-                Notification notification = new NotificationCompat.Builder(getApplicationContext(), MainApplication.CHANNEL_ID3)
-                        .setSmallIcon(R.mipmap.ic_launcher_round)
-                        .setContentTitle("SaFaCo xin thông báo : ")
-                        .setColor(getResources().getColor(R.color.BlueViolet))
-                        .setContentText("Đã mất kết nối với Server")
-                        .setStyle(new NotificationCompat.BigTextStyle()
-                                .bigText("Đã mất kết nối với Server"))
-                        .build();
-                NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-//                            int id = (int) new Date().getTime();
-                notificationManager.notify(0, notification);
+//                Notification notification = new NotificationCompat.Builder(getApplicationContext(), MainApplication.CHANNEL_ID3)
+//                        .setSmallIcon(R.mipmap.ic_launcher_round)
+//                        .setContentTitle("SaFaCo xin thông báo : ")
+//                        .setColor(getResources().getColor(R.color.BlueViolet))
+//                        .setContentText("Đã mất kết nối với Server")
+//                        .setStyle(new NotificationCompat.BigTextStyle()
+//                                .bigText("Đã mất kết nối với Server"))
+//                        .build();
+//                NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+////                            int id = (int) new Date().getTime();
+//                notificationManager.notify(0, notification);
             }
         });
     }

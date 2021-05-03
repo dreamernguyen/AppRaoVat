@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:background="@color/main_blue"
+        android:background="@color/DodgerBlue"
         android:orientation="vertical">
 
         <com.google.android.material.textfield.TextInputLayout
@@ -30,8 +30,8 @@
                 android:id="@+id/edTimKiem"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Nhà trọ"
                 android:maxLines="1"
+                android:focusable="false"
                 android:drawableEnd="@drawable/baseline_search_24"
                 />
         </com.google.android.material.textfield.TextInputLayout>
@@ -74,7 +74,6 @@
                 android:text="Tất cả"
                 android:textSize="14sp"
                 android:textAllCaps="false"
-                android:enabled="false"
                 app:icon="@drawable/baseline_arrow_drop_down_24"
                 app:iconGravity="end"
                 app:iconTint="@color/black"

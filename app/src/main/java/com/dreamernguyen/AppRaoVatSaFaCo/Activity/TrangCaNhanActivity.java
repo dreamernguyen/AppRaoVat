@@ -115,6 +115,14 @@ public class TrangCaNhanActivity extends AppCompatActivity {
         rcvBaiViet.setLayoutManager(linearLayoutManager);
         baiVietAdapter = new BaiVietAdapter(TrangCaNhanActivity.this);
         rcvBaiViet.setAdapter(baiVietAdapter);
+        btnDangBai.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(),DangBaiActivity.class);
+                i.putExtra("chucNang","Đăng bài");
+                startActivity(i);
+            }
+        });
         loadTrangCaNhan(idNguoiDung);
         taoQR();
 

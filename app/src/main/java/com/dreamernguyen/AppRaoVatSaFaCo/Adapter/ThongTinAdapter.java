@@ -58,23 +58,23 @@ public class ThongTinAdapter extends RecyclerView.Adapter<ThongTinAdapter.ThongT
         final String a = mlist.get(position);
         switch (a) {
             case "Bất Động Sản":
-                holder.img.setImageResource(R.drawable.bat_dong_san);
+                holder.img.setImageResource(R.drawable.baseline_apartment_24);
                 break;
             case "Xe Cộ":
-                holder.img.setImageResource(R.drawable.xe_co);
+                holder.img.setImageResource(R.drawable.baseline_directions_car_24);
                 break;
             case "Đồ Điện Tử":
-                holder.img.setImageResource(R.drawable.do_dien_tu);
+                holder.img.setImageResource(R.drawable.baseline_devices_24);
                 break;
             case "Sách":
-                holder.img.setImageResource(R.drawable.sach);
+                holder.img.setImageResource(R.drawable.baseline_auto_stories_24);
                 break;
             case "Thời Trang":
-                holder.img.setImageResource(R.drawable.thoi_trang);
+                holder.img.setImageResource(R.drawable.baseline_local_mall_24);
 
                 break;
             default:
-                holder.img.setImageResource(R.drawable.anhdemo1);
+                holder.img.setImageResource(R.drawable.baseline_chevron_right_24);
 
         }
         holder.tv.setText(a);

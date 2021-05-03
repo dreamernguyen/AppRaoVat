@@ -26,6 +26,8 @@ import com.dreamernguyen.AppRaoVatSaFaCo.DataBase.TimKiemDataBase;
 import com.dreamernguyen.AppRaoVatSaFaCo.Models.DuLieuTraVe;
 import com.dreamernguyen.AppRaoVatSaFaCo.Models.TimKiem;
 import com.dreamernguyen.AppRaoVatSaFaCo.R;
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.textfield.TextInputEditText;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -36,10 +38,12 @@ public class TimKiemMatHangKetQuaFragment extends Fragment {
 
 
     EditText edTieuDe;
-    TextView tvDiaChi, tvHangMuc;
+    TextView tvDiaChi;
     Spinner tvSapXep;
     RecyclerView rv;
+    MaterialButton btnDangMuc;
 
+    TextInputEditText edTimKiem;
     MatHangAdapter2 matHangAdapter;
 
 
@@ -53,17 +57,19 @@ public class TimKiemMatHangKetQuaFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        edTimKiem=view.findViewById(R.id.edTimKiem);
         edTieuDe = view.findViewById(R.id.edTieuDe);
         tvDiaChi = view.findViewById(R.id.tvDiaChi);
-        tvHangMuc = view.findViewById(R.id.btnDanhMuc);
+        btnDangMuc = view.findViewById(R.id.btnDanhMuc);
         tvSapXep = view.findViewById(R.id.spnSapXep);
         rv = view.findViewById(R.id.rv);
 
+        edTimKiem.setText(TimKiemMatHangActivity.timKiemTemp.getTieuDe());
 
         if (TimKiemMatHangActivity.timKiemTemp.getDanhMuc().isEmpty()) {
-            tvHangMuc.setText("Tất cả danh mục");
+            btnDangMuc.setText("Tất cả");
         } else {
-            tvHangMuc.setText(TimKiemMatHangActivity.timKiemTemp.getDanhMuc());
+            btnDangMuc.setText(TimKiemMatHangActivity.timKiemTemp.getDanhMuc());
         }
 
         if (TimKiemMatHangActivity.timKiemTemp.getDiaChi().isEmpty()) {
@@ -76,15 +82,17 @@ public class TimKiemMatHangKetQuaFragment extends Fragment {
         rv.setAdapter(matHangAdapter);
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
 
+
         nhanNut();
     }
 
     public void nhanNut() {
 
-        tvHangMuc.setOnClickListener(new View.OnClickListener() {
+        btnDangMuc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                Log.d("a", "onClick: ");
                 Navigation.findNavController(v).navigate(R.id.action_timKiemMatHangKetQuaFragment_to_timKiemMatHangThongTinFragment);
 
                 TimKiemMatHangActivity.viTri = 0;
@@ -99,6 +107,13 @@ public class TimKiemMatHangKetQuaFragment extends Fragment {
             }
         });
 
+        edTimKiem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(v).navigate(R.id.action_timKiemMatHangKetQuaFragment_to_timKiemMatHangNhanhFragment);
+            }
+        });
+
         ArrayAdapter<CharSequence> arrayAdapter = ArrayAdapter.createFromResource(getContext(), R.array.SapXep, android.R.layout.simple_spinner_item);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         tvSapXep.setAdapter(arrayAdapter);
@@ -110,25 +125,26 @@ public class TimKiemMatHangKetQuaFragment extends Fragment {
 
                 switch (position) {
                     case 0:
-                        timKiem.setSapXepGiaBan("1");
-                        timKiem.setSapXepThoiGian("");
-                        TimKiemDataBase.getInstance(getContext()).timKiemDAO().UpdateTemp(timKiem);
-                        break;
-                    case 1:
-                        timKiem.setSapXepGiaBan("-1");
-                        timKiem.setSapXepThoiGian("");
+                        timKiem.setSapXepGiaBan("");
+                        timKiem.setSapXepThoiGian("-1");
                         TimKiemDataBase.getInstance(getContext()).timKiemDAO().UpdateTemp(timKiem);
 
-                        break;
-                    case 2:
+                          break;
+                    case 1:
                         timKiem.setSapXepGiaBan("");
                         timKiem.setSapXepThoiGian("1");
+                        TimKiemDataBase.getInstance(getContext()).timKiemDAO().UpdateTemp(timKiem);
+                        break;
+                    case 2:
+                        timKiem.setSapXepGiaBan("1");
+                        timKiem.setSapXepThoiGian("");
                         TimKiemDataBase.getInstance(getContext()).timKiemDAO().UpdateTemp(timKiem);
 
                         break;
                     case 3:
-                        timKiem.setSapXepGiaBan("");
-                        timKiem.setSapXepThoiGian("-1");
+
+                        timKiem.setSapXepGiaBan("-1");
+                        timKiem.setSapXepThoiGian("");
                         TimKiemDataBase.getInstance(getContext()).timKiemDAO().UpdateTemp(timKiem);
 
                         break;

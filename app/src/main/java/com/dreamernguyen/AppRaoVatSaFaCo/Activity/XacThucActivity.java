@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.chaos.view.PinView;
 import com.dreamernguyen.AppRaoVatSaFaCo.ApiService;
+import com.dreamernguyen.AppRaoVatSaFaCo.LocalDataManager;
 import com.dreamernguyen.AppRaoVatSaFaCo.Models.DuLieuTraVe;
 import com.dreamernguyen.AppRaoVatSaFaCo.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -37,8 +38,9 @@ public class XacThucActivity extends AppCompatActivity {
     PinView pinView;
     String mVerificationId;
     Button btnXacThuc;
-    String hoTen,matKhau,SDT;
+    String hoTen,matKhau,SDT,manHinh;
     TextView tvXacThuc;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,14 +52,27 @@ public class XacThucActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         Intent i = getIntent();
         if (i.getExtras() != null){
-            SDT = i.getStringExtra("SDT");
-            hoTen = i.getStringExtra("hoTen");
-            matKhau = i.getStringExtra("matKhau");
+            manHinh = i.getStringExtra("activity");
+            if(manHinh.equals("GianHang")){
+                SDT = i.getStringExtra("SDT");
+
+            }
+            if(manHinh.equals("DangNhap")){
+                SDT = i.getStringExtra("SDT");
+                matKhau = i.getStringExtra("matKhau");
+            }
+            else {
+                SDT = i.getStringExtra("SDT");
+                hoTen = i.getStringExtra("hoTen");
+                matKhau = i.getStringExtra("matKhau");
+            }
+            if(SDT != null){
+                tvXacThuc.setText("Mã xác nhận đã được gửi đến số điện thoại "+SDT);
+                guiXacThuc(SDT+"");
+            }
+
         }
-        if(SDT != null){
-            tvXacThuc.setText("Mã xác nhận đã được gửi đến số điện thoại "+SDT);
-            guiXacThuc(SDT+"");
-        }
+
 
         btnXacThuc.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,19 +147,59 @@ public class XacThucActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
                             Log.d("XacThuc", "signInWithCredential:success");
-                            DangKy();
-
-                            // Update UI
+                            if(manHinh.equals("DangKy")){
+                                DangKy();
+                            }
+                            if(manHinh.equals("GianHang")){
+                                themSoDienThoai();
+                            }
+                            if(manHinh.equals("DangNhap")){
+                                layLaiMatKhau();
+                            }
                         } else {
-                            // Sign in failed, display a message and update the UI
                             Log.d("XacThuc", "signInWithCredential:failure", task.getException());
 
                         }
                     }
                 });
     }
+
+    private void themSoDienThoai() {
+        Call<DuLieuTraVe> call = ApiService.apiService.themSoDienThoai(LocalDataManager.getIdNguoiDung(),SDT);
+        call.enqueue(new Callback<DuLieuTraVe>() {
+            @Override
+            public void onResponse(Call<DuLieuTraVe> call, Response<DuLieuTraVe> response) {
+                String thongBao = response.body().getThongBao();
+                Toast.makeText(getApplicationContext(), ""+thongBao, Toast.LENGTH_SHORT).show();
+                finish();
+            }
+
+            @Override
+            public void onFailure(Call<DuLieuTraVe> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void layLaiMatKhau() {
+        Call<DuLieuTraVe> call = ApiService.apiService.quenMatKhau(SDT,matKhau);
+        call.enqueue(new Callback<DuLieuTraVe>() {
+            @Override
+            public void onResponse(Call<DuLieuTraVe> call, Response<DuLieuTraVe> response) {
+                String thongBao = response.body().getThongBao();
+                Toast.makeText(getApplicationContext(), ""+thongBao, Toast.LENGTH_SHORT).show();
+                finish();
+
+            }
+
+            @Override
+            public void onFailure(Call<DuLieuTraVe> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     public void DangKy(){
         Call<DuLieuTraVe> call = ApiService.apiService.dangKy(hoTen,SDT,matKhau);
         call.enqueue(new Callback<DuLieuTraVe>() {

@@ -70,19 +70,26 @@ public class NhanTinActivity extends AppCompatActivity {
         }
         Intent i = getIntent();
         mRunnable.run();
+
+
+
+        tvTenNguoiDung = findViewById(R.id.tvTenNguoiDung);
+        edTinNhan = findViewById(R.id.edTinNhan);
+        btnGui = findViewById(R.id.btnGui);
+        imgBack = findViewById(R.id.imgBack);
+        btnUpload = findViewById(R.id.btnUpload);
         if (i.getExtras() != null) {
             intentActivity = i.getStringExtra("activity");
             idNguoiDung = i.getStringExtra("idNguoiDung");
             tenNguoiDung = i.getStringExtra("tenNguoiDung");
             loadTinNhan(idNguoiDung);
+            if(intentActivity.equals("MatHangChiTiet")){
+                if(i.getStringExtra("noiDung") != null){
+                    guiTinNhan(idNguoiDung,i.getStringExtra("noiDung"));
+                }
+            }
         }
-
-        tvTenNguoiDung = findViewById(R.id.tvTenNguoiDung);
         tvTenNguoiDung.setText(tenNguoiDung);
-        edTinNhan = findViewById(R.id.edTinNhan);
-        btnGui = findViewById(R.id.btnGui);
-        imgBack = findViewById(R.id.imgBack);
-        btnUpload = findViewById(R.id.btnUpload);
         btnUpload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -127,7 +134,6 @@ public class NhanTinActivity extends AppCompatActivity {
                 loadTinNhan(id);
             }
         }
-        Log.d("oo", "checkTinNhanMoi: ");
     }
 
     private void checkKeyboard() {

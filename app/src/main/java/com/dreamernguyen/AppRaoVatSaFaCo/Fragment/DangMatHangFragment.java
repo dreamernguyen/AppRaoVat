@@ -203,7 +203,7 @@ public class DangMatHangFragment extends Fragment {
         String mNoiDung = DangMatHangActivity.noiDung;
         String mHangMuc = DangMatHangActivity.DanhMuc + " - " + DangMatHangActivity.DanhMucCon;
         int mGiaBan = DangMatHangActivity.giaBan;
-        String mDiaChi = DangMatHangActivity.ThanhPho + " - " + DangMatHangActivity.QuanHuyen + " - " + DangMatHangActivity.PhuongXa;
+        String mDiaChi = DangMatHangActivity.PhuongXa + " - " + DangMatHangActivity.QuanHuyen + " - " + DangMatHangActivity.ThanhPho;
 
         MatHang matHang = new MatHang(mTieuDe, mNoiDung, mHangMuc, mGiaBan, list, mDiaChi);
         Call<DuLieuTraVe> call = ApiService.apiService.dangMatHang(LocalDataManager.getIdNguoiDung(), matHang);

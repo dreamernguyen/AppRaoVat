@@ -9,6 +9,7 @@ import androidx.viewpager.widget.ViewPager;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -58,7 +59,7 @@ public class MatHangChiTietActivity extends AppCompatActivity {
     MaterialCheckBox chkLuuTin;
     CircleImageView imgAvatar;
     LinearLayout layout1,layout2, lnNguoiMua;
-    MaterialButton btnSuaTin,btnXoaTin,btnBaoCao,btnDanhSachQuanTam;
+    MaterialButton btnSuaTin,btnXoaTin,btnBaoCao,btnDanhSachQuanTam,btnNhanTin,btnGoiDien;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,6 +99,7 @@ public class MatHangChiTietActivity extends AppCompatActivity {
             }
         });
 
+
         Call<DuLieuTraVe> call = ApiService.apiService.xemChiTietMatHang(idMatHangChiTiet);
         call.enqueue(new Callback<DuLieuTraVe>() {
             @Override
@@ -123,7 +125,7 @@ public class MatHangChiTietActivity extends AppCompatActivity {
                 }
                 Dialog dialog = new Dialog(MatHangChiTietActivity.this,R.style.BottomSheetThemeCustom);
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                dialog.setContentView(R.layout.dialog_bao_cao_bai_viet);
+                dialog.setContentView(R.layout.dialog_bao_cao_mat_hang);
 
                 Window window = dialog.getWindow();
                 if(window == null){
@@ -155,7 +157,19 @@ public class MatHangChiTietActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         if(a.size() > 0){
-                            Toast.makeText(MatHangChiTietActivity.this, "Báo cáo mặt hàng với lí do : " +a.get(0), Toast.LENGTH_SHORT).show();
+                            Call<DuLieuTraVe> call = ApiService.apiService.baoCaoMatHang(matHang.getId(),LocalDataManager.getIdNguoiDung(),a.get(0).toString());
+                            call.enqueue(new Callback<DuLieuTraVe>() {
+                                @Override
+                                public void onResponse(Call<DuLieuTraVe> call, Response<DuLieuTraVe> response) {
+                                    finish();
+                                    Toast.makeText(MatHangChiTietActivity.this, "Báo cáo mặt hàng thành công!", Toast.LENGTH_SHORT).show();
+                                }
+
+                                @Override
+                                public void onFailure(Call<DuLieuTraVe> call, Throwable t) {
+
+                                }
+                            });
                         }else {
                             Toast.makeText(getApplicationContext(), "Vui lòng chọn lí do báo cáo", Toast.LENGTH_SHORT).show();
                         }
@@ -218,6 +232,24 @@ public class MatHangChiTietActivity extends AppCompatActivity {
                 tvMota.setText(matHang.getMoTa());
                 tvHoTen.setText(matHang.getIdNguoiDung().getHoTen());
                 tvSdt.setText("Số điện thoại: "+matHang.getIdNguoiDung().getSoDienThoai()+"");
+                btnGoiDien.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + matHang.getIdNguoiDung().getSoDienThoai()));
+                        startActivity(intent);
+                    }
+                });
+                btnNhanTin.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(getApplicationContext(), NhanTinActivity.class);
+                        intent.putExtra("activity", "MatHangChiTiet");
+                        intent.putExtra("idNguoiDung", matHang.getIdNguoiDung().getId());
+                        intent.putExtra("tenNguoiDung", matHang.getIdNguoiDung().getHoTen());
+                        intent.putExtra("noiDung","Tôi rất quan tâm đến  '"+matHang.getTieuDe()+"' của bạn. Chúng ta có thể trao đổi thêm không ?");
+                        startActivity(intent);
+                    }
+                });
 
                 if(matHang.getNguoiQuanTam().size() == 0){
                     chkLuuTin.setChecked(false);
@@ -343,6 +375,8 @@ public class MatHangChiTietActivity extends AppCompatActivity {
         btnXoaTin=findViewById(R.id.btnXoaTin);
         btnBaoCao = findViewById(R.id.btnBaoCao);
         tvHoTen = findViewById(R.id.tvHoTen);
+        btnNhanTin = findViewById(R.id.btnNhanTin);
+        btnGoiDien = findViewById(R.id.btnGoiDien);
 
         tvTieuDe2 = findViewById(R.id.tvTieuDeChiTiet2);
         tvGiaBan2 = findViewById(R.id.tvGiaChiTiet2);
@@ -400,5 +434,20 @@ public class MatHangChiTietActivity extends AppCompatActivity {
         }else {
             idMatHangChiTiet = bundle.getString("idMatHang");
         }
+    }
+    private void guiTinNhan(String idLienHe, String noiDung) {
+        String idNguoiDung = LocalDataManager.getIdNguoiDung();
+        Call<DuLieuTraVe> call = ApiService.apiService.chat(idNguoiDung, idLienHe, noiDung, "");
+        call.enqueue(new Callback<DuLieuTraVe>() {
+            @Override
+            public void onResponse(Call<DuLieuTraVe> call, Response<DuLieuTraVe> response) {
+
+            }
+            @Override
+            public void onFailure(Call<DuLieuTraVe> call, Throwable t) {
+
+                Log.d("guiTinNhan", "Loi: " + t.getMessage());
+            }
+        });
     }
 }
