@@ -33,6 +33,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.bumptech.glide.Glide;
 import com.dreamernguyen.AppRaoVatSaFaCo.Activity.MatHangChiTietActivity;
+import com.dreamernguyen.AppRaoVatSaFaCo.Activity.MatHangToiRaoActivity;
 import com.dreamernguyen.AppRaoVatSaFaCo.Activity.TimKiemActivity;
 import com.dreamernguyen.AppRaoVatSaFaCo.Activity.TimKiemMatHangActivity;
 import com.dreamernguyen.AppRaoVatSaFaCo.Activity.XacThucActivity;
@@ -45,6 +46,7 @@ import com.dreamernguyen.AppRaoVatSaFaCo.LocalDataManager;
 import com.dreamernguyen.AppRaoVatSaFaCo.Models.BaiViet;
 import com.dreamernguyen.AppRaoVatSaFaCo.Models.DuLieuTraVe;
 import com.dreamernguyen.AppRaoVatSaFaCo.Models.MatHang;
+import com.dreamernguyen.AppRaoVatSaFaCo.Models.NguoiDung;
 import com.dreamernguyen.AppRaoVatSaFaCo.Models.TimKiem;
 import com.dreamernguyen.AppRaoVatSaFaCo.R;
 import com.google.android.material.button.MaterialButton;
@@ -69,7 +71,7 @@ public class GianHangFragment extends Fragment {
 
     MaterialButton btnTimKiemNhanh, btnDangSanPham;
     RecyclerView rvDanhMuc, rvDanhSach;
-    ImageView imgAvatar;
+    CircleImageView imgAvatar;
     LinearLayout lnThemMatHang;
     DanhMucGianHangAdapter danhMucGianHangAdapter;
     MatHangAdapter matHangAdapter;
@@ -99,9 +101,18 @@ public class GianHangFragment extends Fragment {
         layDuLieu();
         nhanNut();
 
+
     }
 
     public void nhanNut() {
+        imgAvatar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(), MatHangToiRaoActivity.class);
+                startActivity(i);
+            }
+        });
+
         Dialog dialog = new Dialog(getContext(),R.style.BottomSheetThemeCustom);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.dialog_xac_thuc);
@@ -235,4 +246,5 @@ public class GianHangFragment extends Fragment {
         layDuLieu();
         kiemTraTimKiemTemp();
     }
+
 }

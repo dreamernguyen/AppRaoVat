@@ -35,11 +35,29 @@ public class LocalDataManager {
     public static String getDanhMuc(){
         return LocalDataManager.getInstance().configPref.getStringValue("DanhMuc");
     }
+    public static void setLuuDangNhap(Boolean daLuu){
+        LocalDataManager.getInstance().configPref.putBooleanValue("luuDangNhap",daLuu);
+    }
+    public static Boolean getLuuDangNhap(){
+        return LocalDataManager.getInstance().configPref.getBooleanValue("luuDangNhap");
+    }
     public static void setIdNguoiDung(String value){
         LocalDataManager.getInstance().configPref.putStringValue("idNguoiDung",value);
     }
     public static String getIdNguoiDung(){
         return LocalDataManager.getInstance().configPref.getStringValue("idNguoiDung");
+    }
+    public static void setSDT(String value){
+        LocalDataManager.getInstance().configPref.putStringValue("SDT",value);
+    }
+    public static String getSDT(){
+        return LocalDataManager.getInstance().configPref.getStringValue("SDT");
+    }
+    public static void setMatKhau(String value){
+        LocalDataManager.getInstance().configPref.putStringValue("matKhau",value);
+    }
+    public static String getMatKhau(){
+        return LocalDataManager.getInstance().configPref.getStringValue("matKhau");
     }
     public static void setNguoiDung(NguoiDung nguoiDung){
         Gson gson = new Gson();

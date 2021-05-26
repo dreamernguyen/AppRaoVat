@@ -83,10 +83,9 @@ public class BaiVietAdapter extends RecyclerView.Adapter<BaiVietAdapter.BaiVietV
     @Override
     public void onBindViewHolder(@NonNull BaiVietViewHolder holder, int position) {
 
-
         holder.layoutLoading.setVisibility(View.GONE);
         holder.layoutMain.setVisibility(View.VISIBLE);
-        BaiViet baiViet = listBaiViet.get(holder.getAdapterPosition());
+        BaiViet baiViet = listBaiViet.get(position);
 
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS");
         Calendar cal = Calendar.getInstance();
@@ -141,6 +140,14 @@ public class BaiVietAdapter extends RecyclerView.Adapter<BaiVietAdapter.BaiVietV
 
         holder.tvTenNguoiDung.setText(baiViet.getIdNguoiDung().getHoTen());
         holder.tvTenNguoiDung.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(context, TrangCaNhanActivity.class);
+                i.putExtra("idNguoiDung",baiViet.getIdNguoiDung().getId());
+                context.startActivity(i);
+            }
+        });
+        holder.imgAvatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(context, TrangCaNhanActivity.class);

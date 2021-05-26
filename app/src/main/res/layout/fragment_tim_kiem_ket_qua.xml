@@ -16,97 +16,116 @@
         android:orientation="vertical">
 
         <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginVertical="5dp"
+            app:boxBackgroundColor="@color/white"
             app:boxCornerRadiusBottomEnd="50dp"
             app:boxCornerRadiusBottomStart="50dp"
             app:boxCornerRadiusTopEnd="50dp"
-            app:boxCornerRadiusTopStart="50dp"
-            app:boxBackgroundColor="@color/white"
-            android:layout_marginHorizontal="10dp"
-            android:layout_marginVertical="5dp"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+            app:boxCornerRadiusTopStart="50dp">
+
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edTimKiem"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:maxLines="1"
-                android:focusable="false"
                 android:drawableEnd="@drawable/baseline_search_24"
-                />
+                android:focusable="false"
+                android:maxLines="1" />
         </com.google.android.material.textfield.TextInputLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white">
+
             <com.google.android.material.button.MaterialButton
+                style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:icon="@drawable/baseline_place_24"
-                app:iconTint="@color/HotPink"
-                android:text="Khu vực :"
-                android:textSize="16sp"
-                android:textAllCaps="false"
                 android:enabled="false"
+                android:text="Khu vực :"
+                android:textAllCaps="false"
                 android:textColor="@color/black"
-                style="@style/Widget.MaterialComponents.Button.TextButton"/>
+                android:textSize="16sp"
+                app:icon="@drawable/baseline_place_24"
+                app:iconTint="@color/HotPink" />
 
             <TextView
                 android:id="@+id/tvDiaChi"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="Đà Nẵng"
-                android:gravity="center"
-                android:textColor="@color/black"
-                android:textSize="17sp"
+                android:drawableEnd="@drawable/baseline_arrow_drop_down_24"
                 android:drawablePadding="5dp"
-                android:drawableEnd="@drawable/baseline_arrow_drop_down_24"/>
+                android:gravity="center"
+                android:text="Đà Nẵng"
+                android:textColor="@color/black"
+                android:textSize="17sp" />
 
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white">
+
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnDanhMuc"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
                 android:text="Tất cả"
-                android:textSize="14sp"
                 android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="14sp"
                 app:icon="@drawable/baseline_arrow_drop_down_24"
                 app:iconGravity="end"
-                app:iconTint="@color/black"
-                android:textColor="@color/black"
-                android:layout_marginLeft="10dp"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+                app:iconTint="@color/black" />
+
             <Spinner
                 android:id="@+id/spnSapXep"
+                style="@style/Widget.AppCompat.Spinner.DropDown"
                 android:layout_width="wrap_content"
                 android:layout_height="35dp"
-                android:layout_marginLeft="20dp"
                 android:layout_gravity="center"
-                style="@style/Widget.AppCompat.Spinner.DropDown"
-                />
+                android:layout_marginLeft="20dp" />
 
         </LinearLayout>
 
 
     </LinearLayout>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:layout_weight="49">
+        android:layout_weight="49"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
+            <TextView
+                android:layout_gravity="center"
+                android:id="@+id/tvTrong"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="20dp"
+                android:textSize="20sp"
+                android:gravity="center"
+                android:visibility="gone"/>
+
+        </LinearLayout>
 
     </ScrollView>
-
-
 
 
 </LinearLayout>

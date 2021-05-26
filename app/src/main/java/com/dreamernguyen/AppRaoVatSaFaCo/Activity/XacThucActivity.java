@@ -15,6 +15,7 @@ import com.chaos.view.PinView;
 import com.dreamernguyen.AppRaoVatSaFaCo.ApiService;
 import com.dreamernguyen.AppRaoVatSaFaCo.LocalDataManager;
 import com.dreamernguyen.AppRaoVatSaFaCo.Models.DuLieuTraVe;
+import com.dreamernguyen.AppRaoVatSaFaCo.Models.NguoiDung;
 import com.dreamernguyen.AppRaoVatSaFaCo.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -172,6 +173,7 @@ public class XacThucActivity extends AppCompatActivity {
             public void onResponse(Call<DuLieuTraVe> call, Response<DuLieuTraVe> response) {
                 String thongBao = response.body().getThongBao();
                 Toast.makeText(getApplicationContext(), ""+thongBao, Toast.LENGTH_SHORT).show();
+                loadNguoiDung();
                 finish();
             }
 
@@ -189,6 +191,7 @@ public class XacThucActivity extends AppCompatActivity {
             public void onResponse(Call<DuLieuTraVe> call, Response<DuLieuTraVe> response) {
                 String thongBao = response.body().getThongBao();
                 Toast.makeText(getApplicationContext(), ""+thongBao, Toast.LENGTH_SHORT).show();
+                loadNguoiDung();
                 finish();
 
             }
@@ -217,6 +220,22 @@ public class XacThucActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<DuLieuTraVe> call, Throwable t) {
                 Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+    private void loadNguoiDung(){
+        Call<DuLieuTraVe> call = ApiService.apiService.thongTinNguoiDung(LocalDataManager.getIdNguoiDung());
+        call.enqueue(new Callback<DuLieuTraVe>() {
+            @Override
+            public void onResponse(Call<DuLieuTraVe> call, Response<DuLieuTraVe> response) {
+                NguoiDung nguoiDung = response.body().getNguoiDung();
+                LocalDataManager.setNguoiDung(nguoiDung);
+            }
+
+            @Override
+            public void onFailure(Call<DuLieuTraVe> call, Throwable t) {
+                Log.d("LoadNguoiDung", "onFailure: "+t.getMessage());
+                Toast.makeText(getApplicationContext(), "Load người dùng lỗi", Toast.LENGTH_SHORT).show();
             }
         });
     }

@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
 
@@ -29,6 +30,13 @@
             android:text="Danh sách"/>
 
     </RelativeLayout>
+    <androidx.appcompat.widget.SearchView
+        app:queryHint="Nhập địa chỉ tìm kiếm"
+        app:defaultQueryHint="Nhập địa chỉ tìm kiếm"
+        app:iconifiedByDefault="false"
+        android:id="@+id/sv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
     <ListView
         android:id="@+id/lvThongTin"
         android:layout_width="match_parent"

@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,6 +37,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.checkbox.MaterialCheckBox;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthCredential;
@@ -57,6 +59,7 @@ public class DangNhapActivity extends AppCompatActivity implements GoogleApiClie
     TextInputLayout layoutSDT, layoutMatKhau;
     TextInputEditText edSDT, edMatKhau;
     MaterialButton btnDangNhap;
+    MaterialCheckBox checkBoxDangNhap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +81,6 @@ public class DangNhapActivity extends AppCompatActivity implements GoogleApiClie
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
 
-
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
         mAuth = FirebaseAuth.getInstance();
 
@@ -90,7 +92,7 @@ public class DangNhapActivity extends AppCompatActivity implements GoogleApiClie
         btnDangKy = findViewById(R.id.tvDangKy);
         tvQuenMatKhau = findViewById(R.id.tvQuenmatkhau);
         signInButton = findViewById(R.id.sign_in_button);
-
+        checkBoxDangNhap = findViewById(R.id.checkbox);
         signInButton.setSize(SignInButton.SIZE_WIDE);
         btnDangKy.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,7 +105,6 @@ public class DangNhapActivity extends AppCompatActivity implements GoogleApiClie
             @Override
             public void onClick(View view) {
                 DangNhap();
-
             }
         });
         signInButton.setOnClickListener(new View.OnClickListener() {
@@ -112,7 +113,6 @@ public class DangNhapActivity extends AppCompatActivity implements GoogleApiClie
                 signIn();
             }
         });
-
         edSDT.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -145,9 +145,6 @@ public class DangNhapActivity extends AppCompatActivity implements GoogleApiClie
 
             }
         });
-        edSDT.setText("0361234111");
-        edMatKhau.setText("admin1234");
-
         tvQuenMatKhau.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -166,7 +163,19 @@ public class DangNhapActivity extends AppCompatActivity implements GoogleApiClie
                 }
             }
         });
-
+        if(LocalDataManager.getLuuDangNhap()!= null && LocalDataManager.getLuuDangNhap() == true){
+            checkBoxDangNhap.setChecked(true);
+        }
+        checkBoxDangNhap.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                LocalDataManager.setLuuDangNhap(isChecked);
+            }
+        });
+        if(LocalDataManager.getLuuDangNhap()){
+            edSDT.setText(LocalDataManager.getSDT());
+            edMatKhau.setText(LocalDataManager.getMatKhau());
+        }
     }
 
     private void signIn() {
@@ -181,6 +190,15 @@ public class DangNhapActivity extends AppCompatActivity implements GoogleApiClie
         if (layoutSDT.getError() == null && layoutMatKhau.getError() == null) {
             String mMatKhau = edMatKhau.getText().toString();
             String mSdt = edSDT.getText().toString();
+
+            if(LocalDataManager.getLuuDangNhap()){
+                LocalDataManager.setSDT(edSDT.getText().toString());
+                LocalDataManager.setMatKhau(edMatKhau.getText().toString());
+            }else {
+                LocalDataManager.setSDT(null);
+                LocalDataManager.setMatKhau(null);
+            }
+
             NguoiDung nguoiDung = new NguoiDung(mSdt, mMatKhau);
             Call<DuLieuTraVe> call = ApiService.apiService.dangNhap(nguoiDung);
             call.enqueue(new Callback<DuLieuTraVe>() {
@@ -303,7 +321,19 @@ public class DangNhapActivity extends AppCompatActivity implements GoogleApiClie
         Toast.makeText(this, "Kết nối lỗi", Toast.LENGTH_SHORT).show();
     }
 
+    @Override
+    protected void onResume() {
+        if(LocalDataManager.getLuuDangNhap()){
+            LocalDataManager.setSDT(edSDT.getText().toString());
+            LocalDataManager.setMatKhau(edMatKhau.getText().toString());
+        }else {
+            LocalDataManager.setSDT(null);
+            LocalDataManager.setMatKhau(null);
+        }
+        if(LocalDataManager.getLuuDangNhap()!= null && LocalDataManager.getLuuDangNhap() == true){
+            checkBoxDangNhap.setChecked(true);
+        }
+        super.onResume();
 
-
-
+    }
 }

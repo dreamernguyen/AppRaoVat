@@ -17,7 +17,7 @@
         app:icon="@drawable/round_notifications_black_24dp"
         app:iconTint="@color/Gold"
         android:layout_marginTop="-20dp"
-        android:paddingTop="40dp"
+        android:paddingTop="51dp"
         android:layout_gravity="center"
         android:backgroundTint="@color/main_blue"
         app:iconSize="24dp"

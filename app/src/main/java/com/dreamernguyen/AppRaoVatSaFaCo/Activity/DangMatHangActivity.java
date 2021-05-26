@@ -128,9 +128,10 @@ public class DangMatHangActivity extends AppCompatActivity {
                 String diaChi = matHang.getDiaChi();
                 int a1 = diaChi.indexOf("-");
                 int a2 = diaChi.lastIndexOf("-");
-                ThanhPho = diaChi.substring(0, a1);
+
+                PhuongXa = diaChi.substring(0, a1);
                 QuanHuyen = diaChi.substring(a1 +1, a2);
-                PhuongXa = diaChi.substring(a2 + 2);
+                ThanhPho = diaChi.substring(a2 + 2);
                 String hangMuc = matHang.getHangMuc();
                 DanhMuc = hangMuc.substring(0, hangMuc.indexOf("-"));
                 DanhMucCon = hangMuc.substring(hangMuc.indexOf("-")+1);

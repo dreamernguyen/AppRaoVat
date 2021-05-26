@@ -3,7 +3,6 @@ package com.dreamernguyen.AppRaoVatSaFaCo.Adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -99,7 +98,6 @@ public class TimKiemNhanhAdapter extends RecyclerView.Adapter<TimKiemNhanhAdapte
             @Override
             protected FilterResults performFiltering(CharSequence constraint) {
                 String a = constraint.toString();
-                Log.d("TAG", "performFiltering: "+a);
                 if (a.isEmpty()){
                     list=null;
                 }
@@ -113,7 +111,7 @@ public class TimKiemNhanhAdapter extends RecyclerView.Adapter<TimKiemNhanhAdapte
                         }
                     }
                     list= list1;
-                    Log.d("TAG", "performFiltering: list "+list1);
+
                 }
                 FilterResults filterResults= new FilterResults();
                 filterResults.values=list;

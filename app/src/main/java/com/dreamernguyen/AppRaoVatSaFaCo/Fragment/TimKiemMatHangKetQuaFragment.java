@@ -38,7 +38,7 @@ public class TimKiemMatHangKetQuaFragment extends Fragment {
 
 
     EditText edTieuDe;
-    TextView tvDiaChi;
+    TextView tvDiaChi,tvTrong;
     Spinner tvSapXep;
     RecyclerView rv;
     MaterialButton btnDangMuc;
@@ -62,6 +62,7 @@ public class TimKiemMatHangKetQuaFragment extends Fragment {
         tvDiaChi = view.findViewById(R.id.tvDiaChi);
         btnDangMuc = view.findViewById(R.id.btnDanhMuc);
         tvSapXep = view.findViewById(R.id.spnSapXep);
+        tvTrong = view.findViewById(R.id.tvTrong);
         rv = view.findViewById(R.id.rv);
 
         edTimKiem.setText(TimKiemMatHangActivity.timKiemTemp.getTieuDe());
@@ -169,9 +170,19 @@ public class TimKiemMatHangKetQuaFragment extends Fragment {
         call.enqueue(new Callback<DuLieuTraVe>() {
             @Override
             public void onResponse(Call<DuLieuTraVe> call, Response<DuLieuTraVe> response) {
-                matHangAdapter.setData(response.body().getDanhSachMatHang());
-                rv.setAdapter(matHangAdapter);
-                rv.setLayoutManager(new LinearLayoutManager(getContext()));
+
+
+                if(response.body().getDanhSachMatHang().size() >0){
+                    rv.setVisibility(View.VISIBLE);
+                    matHangAdapter.setData(response.body().getDanhSachMatHang());
+                    rv.setAdapter(matHangAdapter);
+                    rv.setLayoutManager(new LinearLayoutManager(getContext()));
+                }else {
+                    rv.setVisibility(View.GONE);
+                    tvTrong.setVisibility(View.VISIBLE);
+                    tvTrong.setText("Không có mặt hàng nào phù hợp tìm kiếm của bạn !");
+                }
+
 
             }
 

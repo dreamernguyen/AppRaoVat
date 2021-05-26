@@ -74,7 +74,13 @@ public class TheoDoiFragment extends Fragment {
             public void onResponse(Call<DuLieuTraVe> call, Response<DuLieuTraVe> response) {
                 List<BaiViet> listBaiViet = response.body().getDanhSachBaiViet();
                 if(listBaiViet.size() > 0){
-                    baiVietAdapter.setData(listBaiViet);
+                    List<BaiViet> listHienThi = new ArrayList<>();
+                    for(int i= 0; i < listBaiViet.size() ;i++){
+                        if(!listBaiViet.get(i).getAnBaiVoi().contains(LocalDataManager.getIdNguoiDung())){
+                            listHienThi.add(listBaiViet.get(i));
+                        }
+                    }
+                    baiVietAdapter.setData(listHienThi);
                 }else {
                     tvTrong.setVisibility(View.VISIBLE);
                     rvBaiViet.setVisibility(View.GONE);

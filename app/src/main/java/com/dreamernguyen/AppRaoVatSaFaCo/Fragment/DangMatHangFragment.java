@@ -191,7 +191,7 @@ public class DangMatHangFragment extends Fragment {
 
 
         tvTieuDe.setText(DangMatHangActivity.tieuDe);
-        tvDiaChi.setText(DangMatHangActivity.ThanhPho + " - " + DangMatHangActivity.QuanHuyen + " - " + DangMatHangActivity.PhuongXa);
+        tvDiaChi.setText(DangMatHangActivity.PhuongXa + " - " + DangMatHangActivity.QuanHuyen + " - " + DangMatHangActivity.ThanhPho);
         tvGiaBan.setText(DangMatHangActivity.giaBan + "");
         tvHangMuc.setText(DangMatHangActivity.DanhMuc + " - " + DangMatHangActivity.DanhMucCon);
         tvNoiDung.setText(DangMatHangActivity.noiDung);
@@ -228,7 +228,7 @@ public class DangMatHangFragment extends Fragment {
         String mNoiDung = DangMatHangActivity.noiDung;
         String mHangMuc = DangMatHangActivity.DanhMuc + " - " + DangMatHangActivity.DanhMucCon;
         int mGiaBan = DangMatHangActivity.giaBan;
-        String mDiaChi = DangMatHangActivity.ThanhPho + " - " + DangMatHangActivity.QuanHuyen + " - " + DangMatHangActivity.PhuongXa;
+        String mDiaChi = DangMatHangActivity.PhuongXa + " - " + DangMatHangActivity.QuanHuyen + " - " + DangMatHangActivity.ThanhPho;
         MatHang matHang = new MatHang(mTieuDe, mNoiDung, mHangMuc, mGiaBan, list, mDiaChi);
         Call<DuLieuTraVe> call = ApiService.apiService.capNhapMatHang(id, matHang);
         call.enqueue(new Callback<DuLieuTraVe>() {

@@ -1,5 +1,6 @@
 package com.dreamernguyen.AppRaoVatSaFaCo.Fragment;
 
+import android.app.SearchManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -40,6 +42,7 @@ import java.util.List;
 
 public class DangMatHangThongTinFragment extends Fragment {
 
+    SearchView searchView;
     TextView tv;
     ImageView tvBack;
     ListView lvThongTin;
@@ -59,6 +62,7 @@ public class DangMatHangThongTinFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_dang_mat_hang_thong_tin, container, false);
 
+        searchView = view.findViewById(R.id.sv);
         tvBack = view.findViewById(R.id.imgBack);
         lvThongTin = view.findViewById(R.id.lvThongTin);
         rvDiaChi = view.findViewById(R.id.rvDiaChi);
@@ -69,7 +73,6 @@ public class DangMatHangThongTinFragment extends Fragment {
         DanhMucDoDienTu = view.getResources().getStringArray(R.array.DanhMucDoDienTu);
         DanhMucSach = view.getResources().getStringArray(R.array.DanhMucSach);
         DanhMucThoiTrang = view.getResources().getStringArray(R.array.DanhMucThoiTrang);
-
 
 
         themThongTin(DangMatHangActivity.viTri);
@@ -84,7 +87,9 @@ public class DangMatHangThongTinFragment extends Fragment {
     public void themThongTin(int a) {
         switch (a) {
 
+
             case 0:
+                searchView.setVisibility(View.GONE);
                 tvBack.setOnClickListener(v -> {
                     Navigation.findNavController(v).navigate(R.id.actionThongTinToDanhMuc);
                 });
@@ -100,8 +105,9 @@ public class DangMatHangThongTinFragment extends Fragment {
                 }
                 break;
             case 2:
+                searchView.setVisibility(View.VISIBLE);
                 tvBack.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.actionThongTinToDiaChi));
-             switch (DangMatHangActivity.loadDiaChi) {
+                switch (DangMatHangActivity.loadDiaChi) {
                     case "Tinh":
                         loadTinh();
                         break;
@@ -162,15 +168,16 @@ public class DangMatHangThongTinFragment extends Fragment {
                     }.getType();
                     List<Tinh> listTinh = new Gson().fromJson(String.valueOf(response.getJSONArray("results")), listType);
 
-                    diaChiAdapter = new DiaChiAdapter(getContext(),(ma, Ten) -> {
+                    diaChiAdapter = new DiaChiAdapter(getContext(), (ma, Ten) -> {
 
                         DangMatHangActivity.idDiaChi = ma;
                         DangMatHangActivity.ThanhPho = Ten;
-                        Navigation.findNavController(getActivity(),R.id.nav_host).navigate(R.id.actionThongTinToDiaChi);
+                        Navigation.findNavController(getActivity(), R.id.nav_host).navigate(R.id.actionThongTinToDiaChi);
 
                     });
 
                     diaChiAdapter.setListTinh(listTinh);
+                    searchViewRequest();
                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
                     rvDiaChi.setLayoutManager(linearLayoutManager);
                     rvDiaChi.setAdapter(diaChiAdapter);
@@ -199,14 +206,16 @@ public class DangMatHangThongTinFragment extends Fragment {
                     }.getType();
                     List<Quan> listQuan = new Gson().fromJson(String.valueOf(response.getJSONArray("results")), listType);
 
-                    diaChiAdapter = new DiaChiAdapter(getContext(),(ma, Ten) -> {
+                    diaChiAdapter = new DiaChiAdapter(getContext(), (ma, Ten) -> {
 
                         DangMatHangActivity.idDiaChi = ma;
                         DangMatHangActivity.QuanHuyen = Ten;
-                        Navigation.findNavController(getActivity(),R.id.nav_host).navigate(R.id.actionThongTinToDiaChi);
+                        Navigation.findNavController(getActivity(), R.id.nav_host).navigate(R.id.actionThongTinToDiaChi);
 
                     });
                     diaChiAdapter.setListQuan(listQuan);
+
+                    searchViewRequest();
                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
                     rvDiaChi.setLayoutManager(linearLayoutManager);
                     rvDiaChi.setAdapter(diaChiAdapter);
@@ -235,14 +244,17 @@ public class DangMatHangThongTinFragment extends Fragment {
                     }.getType();
                     List<Xa> listXa = new Gson().fromJson(String.valueOf(response.getJSONArray("results")), listType);
 
-                    diaChiAdapter = new DiaChiAdapter(getContext(),(ma, Ten) -> {
+                    diaChiAdapter = new DiaChiAdapter(getContext(), (ma, Ten) -> {
 
                         DangMatHangActivity.idDiaChi = ma;
                         DangMatHangActivity.PhuongXa = Ten;
-                        Navigation.findNavController(getActivity(),R.id.nav_host).navigate(R.id.actionThongTinToDiaChi);
+                        Navigation.findNavController(getActivity(), R.id.nav_host).navigate(R.id.actionThongTinToDiaChi);
 
                     });
                     diaChiAdapter.setListXa(listXa);
+
+                    searchViewRequest();
+
                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
                     rvDiaChi.setLayoutManager(linearLayoutManager);
                     rvDiaChi.setAdapter(diaChiAdapter);
@@ -258,4 +270,25 @@ public class DangMatHangThongTinFragment extends Fragment {
         });
         requestQueue.add(jsonObjectRequest);
     }
+
+    public void searchViewRequest() {
+
+        SearchManager searchManager = (SearchManager) getContext().getSystemService(getContext().SEARCH_SERVICE);
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                diaChiAdapter.getFilter().filter(query);
+
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                diaChiAdapter.getFilter().filter(newText);
+                return false;
+            }
+        });
+    }
 }
+

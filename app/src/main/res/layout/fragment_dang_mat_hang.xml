@@ -9,10 +9,11 @@
     tools:context=".Activity.DangMatHangActivity">
 
     <RelativeLayout
-        android:paddingTop="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#AFEEEE">
+        android:background="#AFEEEE"
+        android:paddingTop="15dp">
+
         <ImageView
             android:id="@+id/imgBack"
             android:layout_width="wrap_content"
@@ -26,9 +27,9 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="10dp"
-            android:textSize="20sp"
+            android:text="Đăng mặt hàng"
             android:textColor="@color/black"
-            android:text="Đăng mặt hàng"/>
+            android:textSize="20sp" />
 
     </RelativeLayout>
 
@@ -46,11 +47,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="Hình ảnh"
                 android:padding="10dp"
+                android:text="Hình ảnh"
                 android:textColor="@color/gray"
-                android:textStyle="bold"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv"
@@ -62,27 +63,29 @@
                 android:layout_width="match_parent"
                 android:layout_height="3dp"
                 android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
-                android:background="#C2EFEF"
-                android:layout_marginTop="10dp" />
+                android:background="#C2EFEF" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="Tiêu đề"
                 android:padding="10dp"
+                android:text="Tiêu đề"
                 android:textColor="@color/gray"
-                android:textStyle="bold"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/tvTieuDe"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint=""
+                android:inputType="number"
+                android:maxLines="2"
                 android:padding="10dp"
                 android:textSize="17dp"
-                android:inputType="number"
                 android:textStyle="bold" />
 
             <TextView
@@ -99,16 +102,17 @@
                 android:padding="10dp"
                 android:text="Giá"
                 android:textColor="@color/gray"
-                android:textStyle="bold"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/tvGiaBan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint=""
+                android:inputType="number"
                 android:padding="10dp"
                 android:textSize="17dp"
-                android:inputType="number"
                 android:textStyle="bold" />
 
             <TextView
@@ -122,19 +126,21 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Nội Dung"
                 android:padding="10dp"
+                android:text="Nội Dung"
                 android:textColor="@color/gray"
-                android:textStyle="bold"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/tvNoiDung"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint=""
+                android:inputType="number"
+                android:maxLines="2"
                 android:padding="10dp"
                 android:textSize="17dp"
-                android:inputType="number"
                 android:textStyle="bold" />
 
             <TextView
@@ -148,18 +154,21 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
                 android:text="Hạng mục"
+                android:padding="10dp"
                 android:textColor="@color/gray"
-                android:textSize="13dp" />
+                android:textStyle="bold"
+                android:textSize="18sp"/>
+
             <TextView
                 android:id="@+id/tvHangMuc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint=""
+                android:inputType="number"
+                android:maxLines="2"
                 android:padding="10dp"
                 android:textSize="17dp"
-                android:inputType="number"
                 android:textStyle="bold" />
 
             <TextView
@@ -173,18 +182,22 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
                 android:text="Địa chỉ"
+                android:padding="10dp"
                 android:textColor="@color/gray"
-                android:textSize="13dp" />
+                android:textStyle="bold"
+                android:textSize="18sp"/>
+
             <TextView
+
                 android:id="@+id/tvDiaChi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint=""
+                android:inputType="number"
+                android:maxLines="2"
                 android:padding="10dp"
                 android:textSize="17dp"
-                android:inputType="number"
                 android:textStyle="bold" />
 
             <TextView
@@ -200,11 +213,10 @@
                 android:id="@+id/btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="10dp"
                 android:backgroundTint="#AFEEEE"
                 android:text="Đăng mặt hàng"
-                android:textColor="@color/black"
-                android:layout_margin="10dp"
-                />
+                android:textColor="@color/black" />
         </LinearLayout>
     </ScrollView>
 

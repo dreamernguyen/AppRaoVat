@@ -93,12 +93,7 @@ public class TrangCaNhanActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-        tvTenNguoiDung.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(TrangCaNhanActivity.this, tvTenNguoiDung.getText(), Toast.LENGTH_SHORT).show();
-            }
-        });
+
         tvDangTheoDoi = findViewById(R.id.tvDangTheoDoi);
         tvNguoiTheoDoi = findViewById(R.id.tvNguoiTheoDoi);
         tvTrong = findViewById(R.id.tvTrong);
@@ -136,6 +131,7 @@ public class TrangCaNhanActivity extends AppCompatActivity {
                 NguoiDung nguoiDung = response.body().getNguoiDung();
                 if (nguoiDung.getId().equals(LocalDataManager.getIdNguoiDung())) {
                     layoutBottom.setVisibility(View.GONE);
+                    btnDangBai.setVisibility(View.VISIBLE);
                     imgMenu.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -215,12 +211,20 @@ public class TrangCaNhanActivity extends AppCompatActivity {
                     }
 
                 }
-                tvTenNguoiDung.setText(nguoiDung.getHoTen());
+                if(nguoiDung.getGioiTinh().equals("Nam")){
+                    tvTenNguoiDung.setText(nguoiDung.getHoTen()+ " 🚹");
+                }
+                if(nguoiDung.getGioiTinh().equals("Nữ")){
+                    tvTenNguoiDung.setText(nguoiDung.getHoTen()+ " 🚺");
+                }else {
+                    tvTenNguoiDung.setText(nguoiDung.getHoTen());
+                }
+
                 tvTieuSu.setText(nguoiDung.getTieuSu());
                 tvDangTheoDoi.setText(nguoiDung.getDangTheoDoi().size() + "");
                 tvNguoiTheoDoi.setText(nguoiDung.getDuocTheoDoi().size() + "");
                 if (nguoiDung.getAvatar() != null && !nguoiDung.getAvatar().isEmpty()) {
-                    Glide.with(TrangCaNhanActivity.this).load(nguoiDung.getAvatar()).into(imgAvatar);
+                    Glide.with(getApplicationContext()).load(nguoiDung.getAvatar()).into(imgAvatar);
                 }
                 List<BaiViet> listBaiViet = response.body().getDanhSachBaiViet();
                 if (listBaiViet.size() > 0) {
@@ -298,5 +302,9 @@ public class TrangCaNhanActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
     }
 
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadTrangCaNhan(idNguoiDung);
+    }
 }

@@ -80,7 +80,7 @@ public interface ApiService {
     Call<DuLieuTraVe> themSoDienThoai(@Path("id") String idNguoiDung, @Field("soDienThoai") String soDienThoai);
 
     @FormUrlEncoded
-    @POST("nguoiDung/quenMatKhau/{id}")
+    @POST("nguoiDung/quenMatKhau")
     Call<DuLieuTraVe> quenMatKhau(@Field("soDienThoai") String soDienThoai, @Field("matKhauMoi") String matKhauMoi);
 
     //Bài viết

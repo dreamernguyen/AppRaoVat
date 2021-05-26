@@ -1,6 +1,7 @@
 package com.dreamernguyen.AppRaoVatSaFaCo.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.dreamernguyen.AppRaoVatSaFaCo.Activity.TrangCaNhanActivity;
 import com.dreamernguyen.AppRaoVatSaFaCo.Models.BinhLuan;
 import com.dreamernguyen.AppRaoVatSaFaCo.R;
 
@@ -46,6 +48,22 @@ public class BinhLuanAdapter extends RecyclerView.Adapter<BinhLuanAdapter.BinhLu
         }
         holder.tvTenNguoiDung.setText(binhLuan.getIdNguoiDung().getHoTen());
         holder.tvNoiDung.setText(binhLuan.getNoiDung());
+        holder.tvTenNguoiDung.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(context, TrangCaNhanActivity.class);
+                i.putExtra("idNguoiDung",binhLuan.getIdNguoiDung().getId());
+                context.startActivity(i);
+            }
+        });
+        holder.imgAvatar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(context, TrangCaNhanActivity.class);
+                i.putExtra("idNguoiDung",binhLuan.getIdNguoiDung().getId());
+                context.startActivity(i);
+            }
+        });
 
     }
 

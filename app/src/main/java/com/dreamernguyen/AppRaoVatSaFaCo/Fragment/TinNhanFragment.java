@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dreamernguyen.AppRaoVatSaFaCo.Activity.QuetQR;
@@ -41,6 +42,7 @@ public class TinNhanFragment extends Fragment {
     LienHeAdapter lienHeAdapter;
     ImageView btnQuetMa;
     SwipeRefreshLayout refreshLayout;
+    TextView tvTrong;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -50,6 +52,7 @@ public class TinNhanFragment extends Fragment {
         rvLienHe = view.findViewById(R.id.rvLienHe);
         lienHeAdapter = new LienHeAdapter(getContext());
         btnQuetMa = view.findViewById(R.id.btnQuetMa);
+        tvTrong = view.findViewById(R.id.tvTrong);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false);
         rvLienHe.setLayoutManager(linearLayoutManager);
         rvLienHe.setAdapter(lienHeAdapter);
@@ -77,6 +80,11 @@ public class TinNhanFragment extends Fragment {
                 List<NguoiDung> list = response.body();
                 if(list.size() > 0){
                     lienHeAdapter.setData(list);
+                    rvLienHe.setVisibility(View.VISIBLE);
+                }else {
+                    rvLienHe.setVisibility(View.GONE);
+                    tvTrong.setVisibility(View.VISIBLE);
+                    tvTrong.setText("Bạn chưa liên hệ với ai !. \nCó nhiều người bạn trên SAFACO đang đợi bạn mở lời đấy, liên hệ với họ ngay nào !");
                 }
                 refreshLayout.setRefreshing(false);
             }

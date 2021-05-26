@@ -19,6 +19,13 @@
         android:layout_below="@id/tab_layout_mat_hang"
         android:id="@+id/mat_hang_viewpager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:visibility="visible"/>
+    <TextView
+        android:id="@+id/tvTrong"
+        android:layout_below="@id/tab_layout_mat_hang"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
 
 </RelativeLayout>

@@ -68,7 +68,6 @@ public class MatHangAdapter extends RecyclerView.Adapter<MatHangAdapter.MatHangV
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS");
         Calendar cal = Calendar.getInstance();
         Date now = cal.getTime();
-        Log.d("now", "onBindViewHolder: " + now);
         SimpleDateFormat format2 = new SimpleDateFormat("dd-MM-yyyy");
         format.setTimeZone(TimeZone.getTimeZone("UTC+7"));
 

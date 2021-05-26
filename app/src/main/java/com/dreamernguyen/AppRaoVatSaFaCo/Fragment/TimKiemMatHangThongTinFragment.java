@@ -341,25 +341,7 @@ public class TimKiemMatHangThongTinFragment extends Fragment {
 
                     diaChiAdapter.setListTinh(listTinh);
 
-                    ///////////
-                    SearchManager searchManager = (SearchManager) getContext().getSystemService(getContext().SEARCH_SERVICE);
-                    searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
-                    searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-                        @Override
-                        public boolean onQueryTextSubmit(String query) {
-                            diaChiAdapter.getFilter().filter(query);
-
-                            return false;
-                        }
-
-                        @Override
-                        public boolean onQueryTextChange(String newText) {
-                            diaChiAdapter.getFilter().filter(newText);
-                            return false;
-                        }
-                    });
-                    //////////
-
+                    searchViewRequest();
                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
                     rv.setLayoutManager(linearLayoutManager);
                     RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL);
@@ -407,22 +389,7 @@ public class TimKiemMatHangThongTinFragment extends Fragment {
                     });
                     diaChiAdapter.setListQuan(listQuan);
 
-                    SearchManager searchManager = (SearchManager) getContext().getSystemService(getContext().SEARCH_SERVICE);
-                    searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
-                    searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-                        @Override
-                        public boolean onQueryTextSubmit(String query) {
-                            diaChiAdapter.getFilter().filter(query);
-
-                            return false;
-                        }
-
-                        @Override
-                        public boolean onQueryTextChange(String newText) {
-                            diaChiAdapter.getFilter().filter(newText);
-                            return false;
-                        }
-                    });
+                    searchViewRequest();
 
 
                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
@@ -444,18 +411,24 @@ public class TimKiemMatHangThongTinFragment extends Fragment {
         requestQueue.add(jsonObjectRequest);
     }
 
-    public void loadSearch(){
+    public void searchViewRequest(){
+
+        SearchManager searchManager = (SearchManager) getContext().getSystemService(getContext().SEARCH_SERVICE);
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
+                diaChiAdapter.getFilter().filter(query);
+
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
+                diaChiAdapter.getFilter().filter(newText);
                 return false;
             }
         });
-    }
+            }
 
 }

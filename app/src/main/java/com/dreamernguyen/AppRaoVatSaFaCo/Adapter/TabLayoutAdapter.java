@@ -39,7 +39,7 @@ public class TabLayoutAdapter extends FragmentStatePagerAdapter {
             case 0:
                 return "Khám phá 🌏";
             case 1:
-                return "Theo Dõi 🔗";
+                return "Theo Dõi 👫";
             default:
                 return "Khám phá 🌏";
         }

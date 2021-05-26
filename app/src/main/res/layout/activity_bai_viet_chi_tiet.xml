@@ -95,7 +95,6 @@
                         android:layout_height="wrap_content"
                         android:textSize="15sp"
                         android:textColor="@color/black"
-                        android:maxLines="10"
                         android:padding="5dp"
                         android:lineHeight="20dp"
                         android:paddingLeft="10dp"

@@ -162,7 +162,6 @@ public class MatHangChiTietActivity extends AppCompatActivity {
                                 @Override
                                 public void onResponse(Call<DuLieuTraVe> call, Response<DuLieuTraVe> response) {
                                     finish();
-                                    Toast.makeText(MatHangChiTietActivity.this, "Báo cáo mặt hàng thành công!", Toast.LENGTH_SHORT).show();
                                 }
 
                                 @Override

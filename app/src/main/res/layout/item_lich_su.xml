@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tvTenLichSu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:padding="15dp"
+        android:maxLength="100"
+        android:textSize="16sp"
+        android:layout_toStartOf="@+id/btn"
+        android:textStyle="bold" />
+
+    <com.google.android.material.button.MaterialButton
+        app:iconTint="@color/black"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:id="@+id/btn"
+        app:iconSize="15dp"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:iconGravity="textStart"
+        app:icon="@drawable/ic_clear" />
+</RelativeLayout>

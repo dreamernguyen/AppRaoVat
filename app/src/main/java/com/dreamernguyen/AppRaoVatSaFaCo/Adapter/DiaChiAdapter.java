@@ -31,6 +31,7 @@ public class DiaChiAdapter extends RecyclerView.Adapter<DiaChiAdapter.DiaChiView
     private List<Quan> listQuan;
     private List<Quan> listQuanCu;
     private List<Xa> listXa;
+    private List<Xa> listXaCu;
     onClickThongTin onClickThongTin;
 
     public DiaChiAdapter(Context context) {
@@ -45,6 +46,9 @@ public class DiaChiAdapter extends RecyclerView.Adapter<DiaChiAdapter.DiaChiView
         }
         if (listQuan != null) {
             return FilterQuan;
+        }
+        if (listXa!=null){
+            return FilterXa;
         }
         return null;
     }
@@ -113,6 +117,38 @@ public class DiaChiAdapter extends RecyclerView.Adapter<DiaChiAdapter.DiaChiView
             notifyDataSetChanged();
         }
     };
+    private Filter FilterXa = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            String a = constraint.toString();
+            Log.d("TAG", "performFiltering: "+a);
+            if (a.isEmpty()){
+                listXa=listXaCu;
+            }
+            else {
+                List<Xa> list1 = new ArrayList<>();
+
+                for (Xa xa : listXaCu){
+                    if (xa.getTenXa().toLowerCase().contains(a.toLowerCase())){
+                        list1.add(xa);
+
+                    }
+                }
+                listXa= list1;
+                Log.d("TAG", "performFiltering: list "+list1);
+            }
+            FilterResults filterResults= new FilterResults();
+            filterResults.values=listXa;
+            return filterResults;                }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+
+
+            listXa = (List<Xa>) results.values;
+            notifyDataSetChanged();
+        }
+    };
 
     public interface onClickThongTin {
 
@@ -139,6 +175,7 @@ public class DiaChiAdapter extends RecyclerView.Adapter<DiaChiAdapter.DiaChiView
 
     public void setListXa(List<Xa> list) {
         this.listXa = list;
+        this.listXaCu=list;
         notifyDataSetChanged();
     }
 

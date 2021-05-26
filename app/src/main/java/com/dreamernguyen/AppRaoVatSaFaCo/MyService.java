@@ -98,7 +98,6 @@ public class MyService extends Service {
                     public void call(Object... args) {
                         Gson gson = new Gson();
                         ThongBao thongBao = gson.fromJson(args[0].toString(), ThongBao.class);
-                        Log.d("Service", "call: " + args[0]);
                         if (thongBao.getIdNguoiDung().getId().equals(LocalDataManager.getIdNguoiDung())) {
                             thongBaoMoi(thongBao);
                         }

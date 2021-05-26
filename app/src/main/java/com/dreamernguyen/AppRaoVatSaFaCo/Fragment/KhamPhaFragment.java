@@ -47,9 +47,6 @@ public class KhamPhaFragment extends Fragment {
     CircleImageView imAvatar;
     ScrollView layoutLoading;
 
-
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -58,8 +55,6 @@ public class KhamPhaFragment extends Fragment {
         refreshLayout = view.findViewById(R.id.refreshLayout);
         layoutLoading = view.findViewById(R.id.listLoading);
         tv = view.findViewById(R.id.tv1);
-
-
         tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,7 +75,6 @@ public class KhamPhaFragment extends Fragment {
             @Override
             public void onRefresh() {
                 loadBaiVietKhamPha();
-
             }
         });
 //        Glide.with(this).load(LocalDataManager.getNguoiDung().getAvatar()).circleCrop().into(imAvatar);

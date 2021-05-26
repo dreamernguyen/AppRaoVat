@@ -116,6 +116,22 @@ public class BaiVietChiTietActivity extends AppCompatActivity {
                 layoutContent.setVisibility(View.VISIBLE);
                 BaiViet baiViet = response.body().getBaiViet();
                 tvTenNguoiDung.setText(baiViet.getIdNguoiDung().getHoTen());
+                tvTenNguoiDung.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent i = new Intent(getApplicationContext(), TrangCaNhanActivity.class);
+                        i.putExtra("idNguoiDung",baiViet.getIdNguoiDung().getId());
+                        startActivity(i);
+                    }
+                });
+                imgAvatar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent i = new Intent(getApplicationContext(), TrangCaNhanActivity.class);
+                        i.putExtra("idNguoiDung",baiViet.getIdNguoiDung().getId());
+                        startActivity(i);
+                    }
+                });
                 Glide.with(getApplicationContext()).load(baiViet.getIdNguoiDung().getAvatar()).into(imgAvatar);
                 tvTim.setText(baiViet.getLuotThich().size()+"");
                 tvNoiDung.setText(baiViet.getNoiDung());

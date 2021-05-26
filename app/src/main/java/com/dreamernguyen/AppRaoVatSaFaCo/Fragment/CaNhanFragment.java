@@ -31,6 +31,7 @@ import com.dreamernguyen.AppRaoVatSaFaCo.Activity.TrangCaNhanActivity;
 import com.dreamernguyen.AppRaoVatSaFaCo.ApiService;
 import com.dreamernguyen.AppRaoVatSaFaCo.LocalDataManager;
 import com.dreamernguyen.AppRaoVatSaFaCo.Models.DuLieuTraVe;
+import com.dreamernguyen.AppRaoVatSaFaCo.Models.NguoiDung;
 import com.dreamernguyen.AppRaoVatSaFaCo.R;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.material.button.MaterialButton;
@@ -135,7 +136,7 @@ public class CaNhanFragment extends Fragment {
         capNhatAvatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                guiAnh();
+                capNhatAnh();
             }
         });
 
@@ -151,7 +152,7 @@ public class CaNhanFragment extends Fragment {
         });
         return view;
     }
-    private void guiAnh() {
+    private void capNhatAnh() {
         TedBottomPicker.with(getActivity())
                 .setPeekHeight(1600)
                 .showTitle(false)
@@ -180,6 +181,8 @@ public class CaNhanFragment extends Fragment {
                                     @Override
                                     public void onResponse(Call<DuLieuTraVe> call, Response<DuLieuTraVe> response) {
                                         Toast.makeText(getContext(), response.body().getThongBao(), Toast.LENGTH_SHORT).show();
+                                        Glide.with(getContext()).load(linkAnh).into(imgAvatar);
+                                        loadNguoiDung();
                                     }
 
                                     @Override
@@ -200,6 +203,22 @@ public class CaNhanFragment extends Fragment {
                         }).dispatch();
                     }
                 });
+    }
+    private void loadNguoiDung(){
+        Call<DuLieuTraVe> call = ApiService.apiService.thongTinNguoiDung(LocalDataManager.getIdNguoiDung());
+        call.enqueue(new Callback<DuLieuTraVe>() {
+            @Override
+            public void onResponse(Call<DuLieuTraVe> call, Response<DuLieuTraVe> response) {
+                NguoiDung nguoiDung = response.body().getNguoiDung();
+                LocalDataManager.setNguoiDung(nguoiDung);
+            }
+
+            @Override
+            public void onFailure(Call<DuLieuTraVe> call, Throwable t) {
+                Log.d("LoadNguoiDung", "onFailure: "+t.getMessage());
+
+            }
+        });
     }
 
 }

@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.TextView;
 
 import com.dreamernguyen.AppRaoVatSaFaCo.Adapter.TabLayoutAdapter;
 import com.dreamernguyen.AppRaoVatSaFaCo.Adapter.TabLayoutMatHangAdapter;
@@ -35,6 +36,7 @@ public class MatHangToiRaoActivity extends AppCompatActivity {
     public static List<MatHang> listDangRao = new ArrayList<>();
     public static List<MatHang> listChoDuyet = new ArrayList<>();
     public static List<MatHang> listDaAn = new ArrayList<>();
+    TextView tvTrong;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +48,7 @@ public class MatHangToiRaoActivity extends AppCompatActivity {
         window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
         window.setStatusBarColor(Color.TRANSPARENT);
 
-
+        tvTrong = findViewById(R.id.tvTrong);
         tabLayout = findViewById(R.id.tab_layout_mat_hang);
         viewPager = findViewById(R.id.mat_hang_viewpager);
         tabLayout.setTabTextColors(getResources().getColor(R.color.black_overlay),getResources().getColor(R.color.main_pink));
@@ -62,6 +64,7 @@ public class MatHangToiRaoActivity extends AppCompatActivity {
             public void onResponse(Call<DuLieuTraVe> call, Response<DuLieuTraVe> response) {
                 List<MatHang> listMatHang = response.body().getDanhSachMatHang();
                 if(listMatHang.size() > 0){
+                    tvTrong.setVisibility(View.GONE);
                     for(int i = 0; i < listMatHang.size();i++){
                         if(listMatHang.get(i).getDaDuyet() == true && listMatHang.get(i).getDaAn() == false) {
                             listDangRao.add(listMatHang.get(i));
@@ -74,6 +77,10 @@ public class MatHangToiRaoActivity extends AppCompatActivity {
                     tabLayoutAdapter.setNumber(listDangRao.size(),listChoDuyet.size(),listDaAn.size());
                     tabLayout.setupWithViewPager(viewPager);
                     viewPager.setAdapter(tabLayoutAdapter);
+                }else {
+                    tvTrong.setVisibility(View.VISIBLE);
+                    viewPager.setVisibility(View.GONE);
+                    tvTrong.setText("Bạn chưa rao mặt hàng nào !");
                 }
 
             }
